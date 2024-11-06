@@ -1,28 +1,23 @@
-// Script para alternar entre as seções
-document.getElementById('integrais-link').addEventListener('click', function() {
-    changeSection('integrais-section');
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+// Rota para /derivada
+app.get('/derivada', (req, res) => {
+    res.send('Você acessou a rota /derivada');
 });
 
-document.getElementById('derivadas-link').addEventListener('click', function() {
-    changeSection('derivadas-section');
+// Rota para /integral
+app.get('/integral', (req, res) => {
+    res.send('Você acessou a rota /integral');
 });
 
-document.getElementById('limites-link').addEventListener('click', function() {
-    changeSection('limites-section');
+// Rota para /limite
+app.get('/limite', (req, res) => {
+    res.send('Você acessou a rota /limite');
 });
 
-document.getElementById('questoes-link').addEventListener('click', function() {
-    changeSection('questoes-section');
+// Inicia o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
-
-function changeSection(sectionId) {
-    document.querySelectorAll('section').forEach(function(section) {
-        section.classList.remove('active');
-    });
-    document.getElementById(sectionId).classList.add('active');
-
-    document.querySelectorAll('nav ul li a').forEach(function(link) {
-        link.classList.remove('active');
-    });
-    document.querySelector(`nav ul li a[href='#${sectionId.split('-')[0]}-link']`).classList.add('active');
-}
