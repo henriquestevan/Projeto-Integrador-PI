@@ -2,20 +2,21 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-// Rota para /derivada
-app.get('/derivada', (req, res) => {
-    res.send('Você acessou a rota /derivada');
-});
+// Redireciona para /limite ao clicar em "Limites"
+document.getElementById('limites').onclick = function() {
+    window.location.href = 'http://localhost:3000/limite';
+};
 
-// Rota para /integral
-app.get('/integral', (req, res) => {
-    res.send('Você acessou a rota /integral');
-});
+// Redireciona para /derivada ao clicar em "Derivadas"
+document.getElementById('derivadas').onclick = function() {
+    window.location.href = 'http://localhost:3000/derivada';
+};
 
-// Rota para /limite
-app.get('/limite', (req, res) => {
-    res.send('Você acessou a rota /limite');
-});
+// Redireciona para /integral ao clicar em "Integrais"
+document.getElementById('integrais').onclick = function() {
+    window.location.href = 'http://localhost:3000/integral';
+};
+
 
 // Inicia o servidor
 app.listen(PORT, () => {
