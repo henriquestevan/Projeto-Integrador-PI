@@ -12,18 +12,19 @@ app.get('/', (req, res) => {
 
 // Rota para /derivada
 app.get('/derivada', (req, res) => {
-    res.send('Você acessou a rota /derivada');
+    res.sendFile(path.join(__dirname, 'public', 'derivada.html'));
 });
 
 // Rota para /integral
 app.get('/integral', (req, res) => {
-    res.send('Você acessou a rota /integral');
+    res.sendFile(path.join(__dirname, 'public', 'integral.html'));
 });
 
 // Rota para /limite
 app.get('/limite', (req, res) => {
-    res.send('Você acessou a rota /limite');
+    res.sendFile(path.join(__dirname, 'public', 'limite.html'));
 });
+
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
