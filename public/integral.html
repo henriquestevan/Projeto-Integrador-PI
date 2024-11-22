@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Página Exemplo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrais - CalculusMadeEasy</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Esta é a página de exemplo!</h1>
-  <a href="/">Voltar para a página principal</a>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="limites.html">Limites</a></li>
+        <li><a href="derivadas.html">Derivadas</a></li>
+        <li><a href="integral.html" class="active">Integrais</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <button>Sign in</button>
+        <button class="register-btn">Register</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>Integrais</h1>
+      <p>Descubra o mundo das integrais, da área sob a curva às integrais definidas e indefinidas!</p>
+    </section>
+
+    <section class="content">
+      <h2>O que é uma Integral?</h2>
+      <p>Uma integral é o processo de calcular a área sob a curva de uma função. Existem dois tipos principais:</p>
+      <ul>
+        <li><b>Indefinida:</b> Não possui limites definidos e inclui uma constante \(C\).</li>
+        <li><b>Definida:</b> Calcula a área entre dois pontos específicos.</li>
+      </ul>
+
+      <h2>Calculadora de Integrais</h2>
+      <p>Insira uma função para calcular sua integral:</p>
+      <div class="calculator">
+        <input type="text" id="function-input" placeholder="Ex: x^2 + 3x + 2">
+        <div>
+          <input type="number" id="lower-bound" placeholder="Limite inferior (deixe vazio para indefinida)">
+          <input type="number" id="upper-bound" placeholder="Limite superior (deixe vazio para indefinida)">
+        </div>
+        <button id="calculate-btn">Calcular</button>
+        <div id="result" class="result"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="integrals.js"></script>
 </body>
 </html>
