@@ -129,4 +129,16 @@ main h1 {
   .menu-item a:hover {
     color: white; /* Garante que o link fique branco ao passar o mouse */
   }
+
+  /* Estilo da logo */
+.logo img {
+    height: 30px; /* Ajuste o tamanho da logo conforme necessário */
+    width: auto;  /* Mantém a proporção da imagem */
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px; /* Espaçamento entre a logo e o menu */
+  }
+  
+
+  
   
