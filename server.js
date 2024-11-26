@@ -6,6 +6,7 @@ const PORT = 3000;
 // Configurar o diretório público para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Rota para a página inicial
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
