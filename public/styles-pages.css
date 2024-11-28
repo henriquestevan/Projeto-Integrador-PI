@@ -50,8 +50,9 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav-list li a:hover {
-    color: #FFD700; /* Amarelo suave */
+.nav-list li a:hover,
+.nav-list li a.active {
+    color: #FFD700; /* Destaque para a página atual */
 }
 
 /* Estilo do menu hamburguer em dispositivos móveis */
@@ -120,55 +121,62 @@ main {
     margin: 0 auto;
 }
 
-/* Estilo das Seções */
-.content-box {
+/* Seção Calculadora */
+.calculator {
     text-align: center;
-    padding: 80px 20px;
-    color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 40vh;
-    animation: fadeIn 1.5s ease-in-out;
+    padding: 40px 20px;
     background-color: #6C757D; /* Cinza suave */
-    margin-bottom: 20px;
+    color: #fff;
+    margin-top: 20px;
     border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.content-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+.calculator input[type="text"] {
+    padding: 10px;
+    width: 250px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.calculator button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #004C99; /* Azul padrão */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+}
+
+.calculator button:hover {
+    background-color: #003366; /* Azul mais escuro */
+}
+
+/* Seção Principal para Teoria */
+.content-box {
+    padding: 40px 20px;
+    background-color: #e6e9ef; /* Fundo neutro */
+    color: #333;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .content-box h2 {
     font-size: 28px;
-    font-weight: bold;
     margin-bottom: 20px;
+    color: #2E3B55; /* Azul escuro para destaque */
 }
 
 .content-box p {
     font-size: 18px;
-    margin-bottom: 20px;
-    max-width: 600px;
-}
-
-/* Botão das Seções */
-.action-button {
-    background-color: #004C99; /* Azul padrão */
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-}
-
-.action-button:hover {
-    background-color: #003366;
+    line-height: 1.6;
 }
 
 /* Rodapé */

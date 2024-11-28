@@ -13,16 +13,18 @@ app.get('/', (req, res) => {
 
 // Rotas específicas
 app.get('/limite', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'limite.html'));
+    res.sendFile(path.join(__dirname, 'public', 'Limite', 'limite.html'));
 });
 
 app.get('/derivada', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'derivada.html'));
+    res.sendFile(path.join(__dirname, 'public', 'Derivada', 'derivada.html'));
 });
 
 app.get('/integral', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'integral.html'));
+    res.sendFile(path.join(__dirname, 'public', 'integral', 'integral.html'));
 });
+
+
 
 // Iniciar o servidor
 app.listen(PORT, () => {
