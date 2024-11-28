@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrais | CalculusMadeEasy</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="/logo.png" alt="Logo CalculusMadeEasy">
+            </div>
+            <ul>
+                <li><a href="/limite">Limites</a></li>
+                <li><a href="/derivada">Derivadas</a></li>
+                <li><a href="/integral" class="active">Integrais</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button>Sign in</button>
+                <button>Register</button>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Seção Teórica -->
+        <section class="theory">
+            <h2>Teoria sobre Integrais</h2>
+            <p>As integrais são um conceito fundamental do cálculo, relacionadas à área sob uma curva. Existem diversos tipos de integrais, sendo a integral definida e a indefinida as mais comuns.</p>
+            <ul>
+                <li><b>Indefinida:</b> Não possui limites definidos e resulta em uma função.</li>
+                <li><b>Definida:</b> Calcula a área entre dois pontos específicos.</li>
+            </ul>
+        </section>
+
+        <!-- Seção Prática (Calculadora de Integrais) -->
+        <section class="calculator">
+            <h2>Calculadora de Integrais</h2>
+            <p>Insira uma função para calcular sua integral:</p>
+            <div class="input-group">
+                <input type="text" id="function-input" placeholder="Função (ex: x^2)">
+                <div class="input-range">
+                    <input type="number" id="lower-bound" placeholder="Limite inferior">
+                    <input type="number" id="upper-bound" placeholder="Limite superior">
+                </div>
+                <button id="calculate-btn">Calcular</button>
+            </div>
+            <div id="result" class="result"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/integrals.js"></script>
+</body>
+</html>
