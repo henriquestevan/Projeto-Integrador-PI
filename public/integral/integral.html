@@ -1,53 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integrais | CalculusMadeEasy</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
+    <title>Limites - Calculus Made Easy</title>
+    <link rel="stylesheet" href="styles-pages.css">
+  </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                <img src="/logo.png" alt="Logo CalculusMadeEasy">
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-            <ul>
-                <li><a href="/limite">Limites</a></li>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="/limite" class="active">Limites</a></li>
                 <li><a href="/derivada">Derivadas</a></li>
-                <li><a href="/integral" class="active">Integrais</a></li>
+                <li><a href="/integral">Integrais</a></li>
+                <li><a href="/historia">História do Cálculo</a></li>
             </ul>
-            <div class="auth-buttons">
-                <button>Sign in</button>
-                <button>Register</button>
-            </div>
         </nav>
+        <div class="banner">
+            <h1>Limites</h1>
+        </div>
     </header>
-    
+
     <main>
-        <!-- Seção Teórica -->
-        <section class="theory">
-            <h2>Teoria sobre Integrais</h2>
-            <p>As integrais são um conceito fundamental do cálculo, relacionadas à área sob uma curva. Existem diversos tipos de integrais, sendo a integral definida e a indefinida as mais comuns.</p>
-            <ul>
-                <li><b>Indefinida:</b> Não possui limites definidos e resulta em uma função.</li>
-                <li><b>Definida:</b> Calcula a área entre dois pontos específicos.</li>
-            </ul>
+        <!-- Seção Introdutória sobre Limites -->
+        <section class="intro-section">
+            <h2>Teoria sobre Limites</h2>
+            <p>Limites são uma parte fundamental do cálculo. Eles ajudam a descrever o comportamento das funções à medida que se aproximam de um determinado ponto.</p>
         </section>
 
-        <!-- Seção Prática (Calculadora de Integrais) -->
-        <section class="calculator">
-            <h2>Calculadora de Integrais</h2>
-            <p>Insira uma função para calcular sua integral:</p>
-            <div class="input-group">
-                <input type="text" id="function-input" placeholder="Função (ex: x^2)">
-                <div class="input-range">
-                    <input type="number" id="lower-bound" placeholder="Limite inferior">
-                    <input type="number" id="upper-bound" placeholder="Limite superior">
-                </div>
-                <button id="calculate-btn">Calcular</button>
-            </div>
-            <div id="result" class="result"></div>
+        <!-- Seção Calculadora de Limites -->
+        <section class="content-box calculator">
+            <h2>Calculadora de Limites</h2>
+            <input type="text" placeholder="Insira a função para calcular o limite">
+            <button>Calcular</button>
+            <div class="result"></div>
         </section>
     </main>
 
@@ -55,6 +46,15 @@
         <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="/integrals.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+
+            mobileMenu.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
