@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limites</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="/limite" class="active">Limites</a></li>
+                <li><a href="/derivada">Derivadas</a></li>
+                <li><a href="/integral">Integrais</a></li>
+                <li><a href="/historia">História do Cálculo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Título da Página -->
+        <section class="banner">
+            <h1>Limites</h1>
+        </section>
+
+        <!-- Botões de Teoria e Prática -->
+        <section class="content-switch">
+            <button id="teoria-btn" class="switch-button active">Parte Teórica</button>
+            <button id="pratica-btn" class="switch-button">Parte Prática</button>
+        </section>
+
+        <!-- Resumo Explicativo -->
+        <section class="intro-section">
+            <h2>Resumo sobre Limites</h2>
+            <p>
+                O conceito de limite é um dos pilares fundamentais do cálculo diferencial e integral. Ele descreve o comportamento de uma função à medida que se aproxima de um ponto específico, podendo ser um número finito ou infinito.
+                Limites são usados para definir a continuidade de funções, a derivada, e até mesmo o integral de uma função. Por exemplo, ao observar o limite de uma função quando a variável se aproxima de um valor,
+                é possível determinar o valor que a função atinge ou o comportamento dela nessa vizinhança. Esse conceito é amplamente utilizado na física, economia e engenharia para modelar fenômenos que envolvem mudanças e tendências.
+                Um exemplo clássico de aplicação é o cálculo de velocidades instantâneas, onde se utiliza o limite para determinar como a posição muda em relação ao tempo de forma infinitesimal.
+                Assim, limites são ferramentas poderosas para lidar com comportamentos de funções que não são simples de determinar de maneira direta.
+                Este resumo serve como uma introdução para explorar as aplicações práticas e teóricas de limites.
+            </p>
+        </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const teoriaBtn = document.getElementById('teoria-btn');
+            const praticaBtn = document.getElementById('pratica-btn');
+            const teoriaContent = document.getElementById('teoria-content');
+            const praticaContent = document.getElementById('pratica-content');
+
+            teoriaBtn.addEventListener('click', () => {
+                teoriaContent.classList.remove('hidden');
+                praticaContent.classList.add('hidden');
+                teoriaBtn.classList.add('active');
+                praticaBtn.classList.remove('active');
+            });
+
+            praticaBtn.addEventListener('click', () => {
+                praticaContent.classList.remove('hidden');
+                teoriaContent.classList.add('hidden');
+                praticaBtn.classList.add('active');
+                teoriaBtn.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

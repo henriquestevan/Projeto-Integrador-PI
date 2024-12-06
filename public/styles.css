@@ -1,4 +1,4 @@
-/* Reset e configurações gerais */
+/* Reset e Configurações Gerais */
 * {
     margin: 0;
     padding: 0;
@@ -54,7 +54,7 @@ body {
     color: #FFD700; /* Amarelo suave */
 }
 
-/* Estilo do menu hamburguer em dispositivos móveis */
+/* Menu Hamburguer em Dispositivos Móveis */
 @media screen and (max-width: 768px) {
     .menu-toggle {
         display: flex;
@@ -200,4 +200,70 @@ footer {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+/* Botão de Retorno */
+.return-button {
+    background-color: #FFD700; /* Amarelo destaque */
+    color: #2E3B55;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px auto;
+    display: block;
+    width: fit-content;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #FFC107;
+    color: #000;
+}
+
+/* Botões de Alternância */
+.content-switch {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.switch-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #2E3B55;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.switch-button.active {
+    background-color: #FFD700;
+    color: #2E3B55;
+}
+
+.switch-button:hover {
+    background-color: #003366;
+}
+
+/* Conteúdo Teoria e Prática */
+.content {
+    display: none;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.content.hidden {
+    display: none;
+}
+
+.content:not(.hidden) {
+    display: block;
 }
