@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculus Made Easy - Página Inicial</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Calculus Made Easy</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
@@ -27,46 +27,32 @@
     </header>
 
     <main>
-        <!-- Seção Introdutória -->
         <section class="intro-section">
             <h2>Bem-vindo</h2>
-            <p>Este site foi projetado para tornar o aprendizado de Cálculo mais fácil e acessível. Explore conceitos fundamentais como Limites, Derivadas e Integrais, com exemplos práticos e explicações detalhadas que facilitarão seu entendimento do cálculo.</p>
+            <p>Explore conceitos fundamentais como Limites, Derivadas e Integrais com exemplos práticos e explicações detalhadas.</p>
         </section>
 
-        <!-- Seção de Limites, Derivadas e Integrais -->
-        <section class="content-box education">
+        <section class="content-box">
             <h2>Limites</h2>
             <p>Descubra como os limites ajudam a compreender o comportamento das funções e a base do cálculo diferencial.</p>
-            <button class="action-button">Explorar Limites</button>
+            <a href="/limite" class="action-button">Explorar Limites</a>
         </section>
 
-        <section class="content-box admission">
+        <section class="content-box">
             <h2>Derivadas</h2>
             <p>Entenda como as derivadas medem a taxa de variação e como aplicá-las para resolver problemas do mundo real.</p>
-            <button class="action-button">Explorar Derivadas</button>
+            <a href="/derivada" class="action-button">Explorar Derivadas</a>
         </section>
 
-        <section class="content-box graduate">
+        <section class="content-box">
             <h2>Integrais</h2>
-            <p>Aprenda a calcular áreas e volumes com integrais, e descubra sua importância em diversas aplicações.</p>
-            <button class="action-button">Explorar Integrais</button>
+            <p>Aprenda a calcular áreas e volumes com integrais e descubra sua importância em diversas aplicações.</p>
+            <a href="/integral" class="action-button">Explorar Integrais</a>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navList = document.getElementById('nav-list');
-
-            mobileMenu.addEventListener('click', () => {
-                navList.classList.toggle('active');
-            });
-        });
-    </script>
-    <script src="script.js"></script>
 </body>
 </html>
