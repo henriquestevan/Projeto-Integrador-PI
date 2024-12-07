@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limites</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="/limite" class="active">Limites</a></li>
+                <li><a href="/derivada">Derivadas</a></li>
+                <li><a href="/integral">Integrais</a></li>
+                <li><a href="/historia">História do Cálculo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Título da Página -->
+        <section class="banner">
+            <h1>Integrais</h1>
+        </section>
+
+        <!-- Botões de Teoria e Prática -->
+        <section class="content-switch">
+            <button id="teoria-btn" class="switch-button active">Parte Teórica</button>
+            <button id="pratica-btn" class="switch-button">Parte Prática</button>
+        </section>
+          <div class="content">
+        <button onclick="window.location.href='/TeoriaLimites'">Parte Teórica</button>
+        <button onclick="window.location.href='/PraticaLimite'">Parte Prática</button>
+    </div>
+
+        <!-- Resumo Explicativo -->
+        <section class="intro-section">
+            <h2>Apresentação de Integrais</h2>
+            <p>
+                As integrais são um dos principais conceitos no cálculo, e estão diretamente ligadas ao conceito de soma acumulada. Elas ajudam a calcular áreas, volumes e outras grandezas que envolvem a acumulação de uma quantidade ao longo de um intervalo. Uma integral de uma função representa o valor total acumulado dessa função sobre um intervalo específico.
+
+                Matematicamente, a integral é a operação inversa da derivada. Enquanto a derivada calcula a taxa de variação de uma função, a integral calcula a soma acumulada da função ao longo de um intervalo. A integral definida é usada para calcular a área sob a curva de uma função entre dois limites, enquanto a integral indefinida representa a família de todas as funções antiderivadas de uma função dada.
+                
+                As integrais são fundamentais em diversas áreas, como física, economia e biologia, pois ajudam a modelar fenômenos complexos, como o movimento de partículas, o crescimento de populações e a distribuição de recursos. Elas também são usadas em problemas de otimização e no estudo de probabilidades e estatísticas.
+                
+                Em resumo, as integrais são uma ferramenta essencial para o cálculo de grandezas acumuladas e para a análise de sistemas dinâmicos e contínuos, sendo aplicadas em várias disciplinas científicas e tecnológicas.
+            </p>
+        </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const teoriaBtn = document.getElementById('teoria-btn');
+            const praticaBtn = document.getElementById('pratica-btn');
+            const teoriaContent = document.getElementById('teoria-content');
+            const praticaContent = document.getElementById('pratica-content');
+
+            teoriaBtn.addEventListener('click', () => {
+                teoriaContent.classList.remove('hidden');
+                praticaContent.classList.add('hidden');
+                teoriaBtn.classList.add('active');
+                praticaBtn.classList.remove('active');
+            });
+
+            praticaBtn.addEventListener('click', () => {
+                praticaContent.classList.remove('hidden');
+                teoriaContent.classList.add('hidden');
+                praticaBtn.classList.add('active');
+                teoriaBtn.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+<!-- Botões Parte Teórica e Parte Prática -->
+<div class="content-switch">
+    <a href="TeoriaIntegral.html" class="switch-button">Parte Teórica</a>
+    <a href="PraticaIntegral.html" class="switch-button">Parte Prática</a>
+</div>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limites</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="/limite" class="active">Limites</a></li>
+                <li><a href="/derivada">Derivadas</a></li>
+                <li><a href="/integral">Integrais</a></li>
+                <li><a href="/historia">História do Cálculo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Título da Página -->
+        <section class="banner">
+            <h1>Derivadas</h1>
+        </section>
+
+        <!-- Botões de Teoria e Prática -->
+        <section class="content-switch">
+            <button id="teoria-btn" class="switch-button active">Parte Teórica</button>
+            <button id="pratica-btn" class="switch-button">Parte Prática</button>
+        </section>
+
+        <!-- Resumo Explicativo -->
+        <section class="intro-section">
+            <h2>Apresentação de Derivadas</h2>
+            <p>
+                As derivadas são um conceito fundamental no cálculo diferencial. Elas descrevem a taxa de variação de uma função em relação à sua variável independente, ou seja, indicam como a função muda à medida que a variável de entrada se altera. A derivada de uma função pode ser interpretada como a inclinação da reta tangente à curva da função em um ponto específico.
+
+Matematicamente, a derivada de uma função é o limite da razão de variação da função em torno de um ponto, quando a variação na variável independente tende a zero. A operação de derivação é essencial em diversas áreas, como física, economia e engenharia, pois permite calcular velocidades, acelerações e outras taxas de variação no mundo real.
+
+Além disso, a derivada está relacionada à continuidade da função e ao estudo de máximos e mínimos. A análise de derivadas é usada para entender o comportamento de funções e resolver problemas que envolvem otimização e modelagem de fenômenos dinâmicos.
+
+A derivada também é amplamente utilizada no estudo de gráficos de funções e na resolução de equações diferenciais, que descrevem sistemas complexos em áreas como biologia, economia e física. Em resumo, as derivadas são uma ferramenta poderosa e indispensável no estudo do cálculo e suas diversas aplicações práticas.
+            </p>
+        </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const teoriaBtn = document.getElementById('teoria-btn');
+            const praticaBtn = document.getElementById('pratica-btn');
+            const teoriaContent = document.getElementById('teoria-content');
+            const praticaContent = document.getElementById('pratica-content');
+
+            teoriaBtn.addEventListener('click', () => {
+                teoriaContent.classList.remove('hidden');
+                praticaContent.classList.add('hidden');
+                teoriaBtn.classList.add('active');
+                praticaBtn.classList.remove('active');
+            });
+
+            praticaBtn.addEventListener('click', () => {
+                praticaContent.classList.remove('hidden');
+                teoriaContent.classList.add('hidden');
+                praticaBtn.classList.add('active');
+                teoriaBtn.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+<!-- Botões Parte Teórica e Parte Prática -->
+<div class="content-switch">
+    <a href="TeoriaDerivada.html" class="switch-button">Parte Teórica</a>
+    <a href="PraticaDerivada.html" class="switch-button">Parte Prática</a>
+</div>

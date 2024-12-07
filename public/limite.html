@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limites</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="/limite" class="active">Limites</a></li>
+                <li><a href="/derivada">Derivadas</a></li>
+                <li><a href="/integral">Integrais</a></li>
+                <li><a href="/historia">História do Cálculo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Título da Página -->
+        <section class="banner">
+            <h1>Limites</h1>
+        </section>
+
+        <!-- Botões de Teoria e Prática -->
+        <section class="content-switch">
+            <button id="teoria-btn" class="switch-button active">Parte Teórica</button>
+            <button id="pratica-btn" class="switch-button">Parte Prática</button>
+        </section>
+
+        <!-- Resumo Explicativo -->
+        <section class="intro-section">
+            <h2>Resumo sobre Limites</h2>
+            <p>
+                Os limites são um conceito essencial no cálculo. Eles ajudam a descrever o comportamento de uma função à medida que sua variável independente se aproxima de um determinado valor. O limite de uma função é usado para analisar o que acontece com os valores da função quando a variável de entrada se aproxima de um número específico, podendo ser finito ou infinito.
+
+O conceito de limite é fundamental para entender o cálculo da derivada e da integral, além de ser crucial para a definição da continuidade de uma função. Os limites são usados para determinar o comportamento de funções em pontos específicos, como quando elas atingem valores extremos ou se aproximam de valores indefinidos.
+
+Limites são amplamente utilizados em diversas áreas como física, economia e engenharia, especialmente para modelar fenômenos que envolvem mudanças rápidas e infinitesimais. O conceito também é importante para o estudo do comportamento de gráficos e da convergência de sequências e séries.
+
+Em resumo, os limites são a base do cálculo e são fundamentais para a análise de funções e a resolução de problemas que envolvem mudanças em processos contínuos.
+
+
+            </p>
+        </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const teoriaBtn = document.getElementById('teoria-btn');
+            const praticaBtn = document.getElementById('pratica-btn');
+            const teoriaContent = document.getElementById('teoria-content');
+            const praticaContent = document.getElementById('pratica-content');
+
+            teoriaBtn.addEventListener('click', () => {
+                teoriaContent.classList.remove('hidden');
+                praticaContent.classList.add('hidden');
+                teoriaBtn.classList.add('active');
+                praticaBtn.classList.remove('active');
+            });
+
+            praticaBtn.addEventListener('click', () => {
+                praticaContent.classList.remove('hidden');
+                teoriaContent.classList.add('hidden');
+                praticaBtn.classList.add('active');
+                teoriaBtn.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+<!-- Botões Parte Teórica e Parte Prática -->
+<div class="content-switch">
+    <a href="TeoriaLimites.html" class="switch-button">Parte Teórica</a>
+    <a href="PraticaLimite.html" class="switch-button">Parte Prática</a>
+</div>
