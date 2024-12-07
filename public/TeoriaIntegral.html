@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte Teórica - Integrais</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="index.html">Limites</a></li>
+                <li><a href="derivadas.html">Derivadas</a></li>
+                <li><a href="integrais.html" class="active">Integrais</a></li>
+                <li><a href="historia.html">História do Cálculo</a></li>
+            </ul>
+        </nav>
+        <div class="banner">
+            <h1>Parte Teórica - Integrais</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-box">
+            <h2>Tópicos de Integrais</h2>
+            <div class="sidebar">
+                <ul>
+                    <li><a href="#">Definição de Integral</a></li>
+                    <li><a href="#">Integração Definida</a></li>
+                    <li><a href="#">Integração Indefinida</a></li>
+                    <li><a href="#">Métodos de Integração</a></li>
+                    <li><a href="#">Aplicações das Integrais</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <h3>Definição de Integral</h3>
+                <p>A integral de uma função é uma operação matemática que pode ser vista como a soma acumulada de uma quantidade ao longo de um intervalo. A integral definida calcula a área sob a curva de uma função...</p>
+                <h3>Integração Definida</h3>
+                <p>Integrais definidas são usadas para calcular a área entre dois limites, isto é, a soma acumulada de uma função em um intervalo específico...</p>
+                <h3>Integração Indefinida</h3>
+                <p>A integração indefinida representa uma família de funções antiderivadas, ou seja, todas as funções que possuem a mesma derivada.</p>
+                <h3>Métodos de Integração</h3>
+                <p>Existem diversos métodos de integração, como substituição, integração por partes, e frações parciais, entre outros.</p>
+                <h3>Aplicações das Integrais</h3>
+                <p>As integrais possuem várias aplicações em física, economia, biologia, e muitas outras áreas. Elas são usadas para calcular áreas, volumes e resolver problemas de otimização.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+
+            mobileMenu.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
