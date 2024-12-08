@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limites</title>
+    <title>Integrais</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -15,9 +15,9 @@
                 <span class="bar"></span>
             </div>
             <ul class="nav-list" id="nav-list">
-                <li><a href="/limite" class="active">Limites</a></li>
+                <li><a href="/limite">Limites</a></li>
                 <li><a href="/derivada">Derivadas</a></li>
-                <li><a href="/integral">Integrais</a></li>
+                <li><a href="/integral" class="active">Integrais</a></li>
                 <li><a href="/historia">História do Cálculo</a></li>
             </ul>
         </nav>
@@ -31,13 +31,9 @@
 
         <!-- Botões de Teoria e Prática -->
         <section class="content-switch">
-            <button id="teoria-btn" class="switch-button active">Parte Teórica</button>
-            <button id="pratica-btn" class="switch-button">Parte Prática</button>
+            <a href="/TeoriaIntegral.html" id="teoria-btn" class="switch-button active">Parte Teórica</a>
+            <a href="/PraticaIntegral.html" id="pratica-btn" class="switch-button">Parte Prática</a>
         </section>
-          <div class="content">
-        <button onclick="window.location.href='/TeoriaLimites'">Parte Teórica</button>
-        <button onclick="window.location.href='/PraticaLimite'">Parte Prática</button>
-    </div>
 
         <!-- Resumo Explicativo -->
         <section class="intro-section">
@@ -52,33 +48,10 @@
                 Em resumo, as integrais são uma ferramenta essencial para o cálculo de grandezas acumuladas e para a análise de sistemas dinâmicos e contínuos, sendo aplicadas em várias disciplinas científicas e tecnológicas.
             </p>
         </section>
+    </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const teoriaBtn = document.getElementById('teoria-btn');
-            const praticaBtn = document.getElementById('pratica-btn');
-            const teoriaContent = document.getElementById('teoria-content');
-            const praticaContent = document.getElementById('pratica-content');
-
-            teoriaBtn.addEventListener('click', () => {
-                teoriaContent.classList.remove('hidden');
-                praticaContent.classList.add('hidden');
-                teoriaBtn.classList.add('active');
-                praticaBtn.classList.remove('active');
-            });
-
-            praticaBtn.addEventListener('click', () => {
-                praticaContent.classList.remove('hidden');
-                teoriaContent.classList.add('hidden');
-                praticaBtn.classList.add('active');
-                teoriaBtn.classList.remove('active');
-            });
-        });
-    </script>
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
-<!-- Botões Parte Teórica e Parte Prática -->
-<div class="content-switch">
-    <a href="TeoriaIntegral.html" class="switch-button">Parte Teórica</a>
-    <a href="PraticaIntegral.html" class="switch-button">Parte Prática</a>
-</div>
