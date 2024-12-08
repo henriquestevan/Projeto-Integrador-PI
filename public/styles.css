@@ -267,3 +267,213 @@ footer {
 .content:not(.hidden) {
     display: block;
 }
+/* Reset e Configurações Gerais */
+.page-theory * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page-theory body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar e Menu Hamburguer */
+.page-theory .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2E3B55; /* Azul escuro discreto */
+    padding: 10px 20px;
+    position: relative;
+}
+
+.page-theory .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.page-theory .bar {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+}
+
+.page-theory .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.page-theory .nav-list li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.page-theory .nav-list li a:hover {
+    color: #FFD700; /* Amarelo suave */
+}
+
+/* Menu Hamburguer em Dispositivos Móveis */
+@media screen and (max-width: 768px) {
+    .page-theory .menu-toggle {
+        display: flex;
+    }
+
+    .page-theory .nav-list {
+        display: none;
+        flex-direction: column;
+        background-color: #2E3B55; /* Fundo do menu no mesmo tom da navbar */
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .page-theory .nav-list.active {
+        display: flex;
+    }
+
+    .page-theory .nav-list li {
+        padding: 10px 0;
+    }
+}
+
+/* Barra Lateral para os Tópicos */
+.page-theory .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #2E3B55;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.page-theory .sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.page-theory .sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.page-theory .sidebar ul li a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.page-theory .sidebar ul li a:hover {
+    color: #FFD700;
+}
+
+/* Conteúdo da Página Teórica */
+.page-theory main {
+    margin-left: 260px; /* Espaço para a barra lateral */
+    padding: 20px;
+}
+
+/* Estilo dos Botões de Tópicos */
+.page-theory .topic-btn {
+    display: inline-block;
+    background-color: #2E3B55;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.page-theory .topic-btn:hover {
+    background-color: #FFD700;
+}
+
+/* Seções dos tópicos */
+.page-theory .content div {
+    margin-bottom: 40px;
+}
+
+.page-theory .content div h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.page-theory .content div p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Estilos de Responsividade para dispositivos menores */
+@media screen and (max-width: 768px) {
+    .page-theory .sidebar {
+        position: static;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .page-theory .sidebar ul {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .page-theory .sidebar ul li {
+        margin-bottom: 10px;
+    }
+
+    .page-theory main {
+        margin-left: 0;
+    }
+    /* Ajustar largura do conteúdo para a área lateral */
+    .page-theory .content {
+    margin-left: 270px; /* Espaço para a barra lateral */
+    padding: 20px;
+    max-width: calc(100% - 270px); /* Limitar a largura ao tamanho da tela menos a barra lateral */
+    overflow-y: auto; /* Permite o scroll vertical dentro da área de conteúdo */
+    height: 100vh; /* A altura é 100% da altura da tela */
+    background-color: #f4f4f4; /* Cor de fundo, caso necessário */
+}
+
+/* Barra lateral */
+    .page-theory .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #2E3B55;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    border-right: 2px solid #333; /* Borda para separar a barra lateral */
+}
+
+/* Conteúdo dos Tópicos */
+.page-theory .content h3 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.page-theory .content p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+}
