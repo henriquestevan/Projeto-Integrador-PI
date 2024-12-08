@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte Teórica - Derivadas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="index.html">Limites</a></li>
+                <li><a href="derivadas.html" class="active">Derivadas</a></li>
+                <li><a href="integrais.html">Integrais</a></li>
+                <li><a href="historia.html">História do Cálculo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="banner">
+            <h1>Parte Teórica - Derivadas</h1>
+        </section>
+
+        <!-- Botões de Tópicos (Lateral) -->
+        <section class="sidebar">
+            <ul>
+                <li><a href="#definicao" class="topic-btn">Definição de Derivada</a></li>
+                <li><a href="#regras" class="topic-btn">Regras de Derivação</a></li>
+                <li><a href="#teorema" class="topic-btn">Teorema Fundamental da Derivada</a></li>
+                <li><a href="#aplicacoes" class="topic-btn">Aplicações das Derivadas</a></li>
+            </ul>
+        </section>
+
+        <!-- Conteúdo -->
+        <section class="content">
+            <div id="definicao">
+                <h3>Definição de Derivada</h3>
+                <p>A derivada de uma função descreve a taxa de variação da função à medida que a variável independente se altera. Ela pode ser vista como a inclinação da reta tangente à curva de uma função em um ponto...</p>
+            </div>
+
+            <div id="regras">
+                <h3>Regras de Derivação</h3>
+                <p>Existem várias regras que facilitam o cálculo de derivadas, como a regra do produto, a regra da soma e a regra da cadeia, entre outras...</p>
+            </div>
+
+            <div id="teorema">
+                <h3>Teorema Fundamental da Derivada</h3>
+                <p>O Teorema Fundamental do Cálculo estabelece a relação entre derivadas e integrais, fornecendo um método para calcular integrais definidas usando derivadas...</p>
+            </div>
+
+            <div id="aplicacoes">
+                <h3>Aplicações das Derivadas</h3>
+                <p>As derivadas têm diversas aplicações práticas, como no cálculo da taxa de crescimento de populações, na otimização de funções e na modelagem de movimentos de partículas...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const topicLinks = document.querySelectorAll('.topic-btn');
+            topicLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

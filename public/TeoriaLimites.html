@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte Teórica - Limites</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="index.html" class="active">Limites</a></li>
+                <li><a href="derivadas.html">Derivadas</a></li>
+                <li><a href="integrais.html">Integrais</a></li>
+                <li><a href="historia.html">História do Cálculo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="banner">
+            <h1>Parte Teórica - Limites</h1>
+        </section>
+
+        <!-- Botões de Tópicos (Lateral) -->
+        <section class="sidebar">
+            <ul>
+                <li><a href="#definicao" class="topic-btn">Definição de Limite</a></li>
+                <li><a href="#limite-finito" class="topic-btn">Limite Finito</a></li>
+                <li><a href="#limite-infinito" class="topic-btn">Limite Infinito</a></li>
+                <li><a href="#teoremas" class="topic-btn">Teoremas dos Limites</a></li>
+                <li><a href="#aplicacoes" class="topic-btn">Aplicações dos Limites</a></li>
+            </ul>
+        </section>
+
+        <!-- Conteúdo -->
+        <section class="content">
+            <div id="definicao">
+                <h3>Definição de Limite</h3>
+                <p>O limite de uma função descreve o comportamento da função à medida que a variável independente se aproxima de um valor específico. Ele é fundamental para entender o cálculo diferencial e a continuidade das funções...</p>
+            </div>
+
+            <div id="limite-finito">
+                <h3>Limite Finito</h3>
+                <p>Limites finitos são aqueles onde a variável independente se aproxima de um número específico e a função tende a um valor finito. Esse conceito é essencial para entender os limites no cálculo de derivadas e integrais...</p>
+            </div>
+
+            <div id="limite-infinito">
+                <h3>Limite Infinito</h3>
+                <p>Limites infinitos ocorrem quando a função tende para um valor infinito ou quando a variável independente se aproxima de um valor que gera uma assíntota na função...</p>
+            </div>
+
+            <div id="teoremas">
+                <h3>Teoremas dos Limites</h3>
+                <p>Existem diversos teoremas importantes no cálculo de limites, como o Teorema do Limite da Soma, do Produto, e da Composição de Funções...</p>
+            </div>
+
+            <div id="aplicacoes">
+                <h3>Aplicações dos Limites</h3>
+                <p>Os limites são amplamente usados em várias áreas, como física, economia e engenharia, para descrever o comportamento de sistemas à medida que se aproximam de certos valores críticos. Eles também são essenciais no cálculo das derivadas e integrais...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const topicLinks = document.querySelectorAll('.topic-btn');
+            topicLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

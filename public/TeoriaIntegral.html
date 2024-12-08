@@ -21,36 +21,51 @@
                 <li><a href="historia.html">História do Cálculo</a></li>
             </ul>
         </nav>
-        <div class="banner">
-            <h1>Parte Teórica - Integrais</h1>
-        </div>
     </header>
 
     <main>
-        <div class="content-box">
-            <h2>Tópicos de Integrais</h2>
-            <div class="sidebar">
-                <ul>
-                    <li><a href="#">Definição de Integral</a></li>
-                    <li><a href="#">Integração Definida</a></li>
-                    <li><a href="#">Integração Indefinida</a></li>
-                    <li><a href="#">Métodos de Integração</a></li>
-                    <li><a href="#">Aplicações das Integrais</a></li>
-                </ul>
-            </div>
-            <div class="main-content">
+        <section class="banner">
+            <h1>Parte Teórica - Integrais</h1>
+        </section>
+
+        <!-- Botões de Tópicos (Lateral) -->
+        <section class="sidebar">
+            <ul>
+                <li><a href="#definicao" class="topic-btn">Definição de Integral</a></li>
+                <li><a href="#integracao-definida" class="topic-btn">Integração Definida</a></li>
+                <li><a href="#integracao-indefinida" class="topic-btn">Integração Indefinida</a></li>
+                <li><a href="#metodos-integracao" class="topic-btn">Métodos de Integração</a></li>
+                <li><a href="#aplicacoes" class="topic-btn">Aplicações das Integrais</a></li>
+            </ul>
+        </section>
+
+        <!-- Conteúdo -->
+        <section class="content">
+            <div id="definicao">
                 <h3>Definição de Integral</h3>
-                <p>A integral de uma função é uma operação matemática que pode ser vista como a soma acumulada de uma quantidade ao longo de um intervalo. A integral definida calcula a área sob a curva de uma função...</p>
+                <p>A integral de uma função é uma operação matemática que pode ser vista como a soma acumulada de uma quantidade ao longo de um intervalo...</p>
+            </div>
+
+            <div id="integracao-definida">
                 <h3>Integração Definida</h3>
                 <p>Integrais definidas são usadas para calcular a área entre dois limites, isto é, a soma acumulada de uma função em um intervalo específico...</p>
-                <h3>Integração Indefinida</h3>
-                <p>A integração indefinida representa uma família de funções antiderivadas, ou seja, todas as funções que possuem a mesma derivada.</p>
-                <h3>Métodos de Integração</h3>
-                <p>Existem diversos métodos de integração, como substituição, integração por partes, e frações parciais, entre outros.</p>
-                <h3>Aplicações das Integrais</h3>
-                <p>As integrais possuem várias aplicações em física, economia, biologia, e muitas outras áreas. Elas são usadas para calcular áreas, volumes e resolver problemas de otimização.</p>
             </div>
-        </div>
+
+            <div id="integracao-indefinida">
+                <h3>Integração Indefinida</h3>
+                <p>A integração indefinida representa uma família de funções antiderivadas, ou seja, todas as funções que possuem a mesma derivada...</p>
+            </div>
+
+            <div id="metodos-integracao">
+                <h3>Métodos de Integração</h3>
+                <p>Existem diversos métodos de integração, como substituição, integração por partes, e frações parciais, entre outros...</p>
+            </div>
+
+            <div id="aplicacoes">
+                <h3>Aplicações das Integrais</h3>
+                <p>As integrais possuem várias aplicações em física, economia, biologia, e muitas outras áreas. Elas são usadas para calcular áreas, volumes e resolver problemas de otimização...</p>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -59,11 +74,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navList = document.getElementById('nav-list');
-
-            mobileMenu.addEventListener('click', () => {
-                navList.classList.toggle('active');
+            const topicLinks = document.querySelectorAll('.topic-btn');
+            topicLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
             });
         });
     </script>
