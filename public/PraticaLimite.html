@@ -34,38 +34,22 @@
         <!-- Botões de Teoria e Prática -->
         <section class="content-switch">
             <a href="/TeoriaLimites.html" id="teoria-btn" class="switch-button">Parte Teórica</a>
-            <a href="/PraticaLimite.html" id="pratica-btn" class="switch-button active">Parte Prática</a>
         </section>
 
         <!-- Instrução e Formulário para Questões de Prática -->
         <section class="intro-section">
             <h2>Questões de Limite</h2>
-            <p>Escolha o tipo de questão que você quer resolver.</p>
+            <p>A API irá gerar uma questão aleatória de limite para você.</p>
             
-            <!-- Formulário para Gerar Questões -->
-            <form id="question-form">
-                <label for="question-type">Escolha um tipo de questão:</label>
-                <select id="question-type" name="question-type">
-                    <option value="limite-fino">Limite Finito</option>
-                    <option value="limite-infinito">Limite Infinito</option>
-                </select>
-                <button type="submit">Gerar Questão</button>
-            </form>
+            <!-- Botão para Gerar Questão -->
+            <button id="generate-question">Gerar Questão de Limite</button>
 
             <section id="question-section">
                 <h3>Questão Gerada:</h3>
                 <p id="generated-question">Aqui aparecerá a questão gerada.</p>
             </section>
 
-            <!-- Formulário para Resposta -->
-            <section id="response-section">
-                <h3>Sua Resposta:</h3>
-                <input type="text" id="response" placeholder="Digite sua resposta">
-                <button id="check-btn">Verificar Resposta</button>
-                <p id="response-feedback"></p>
-            </section>
-
-            <!-- Exibir resposta gerada pela API -->
+            <!-- Exibir resolução gerada pela API -->
             <section id="api-response-section">
                 <h3>Resolução Detalhada:</h3>
                 <p id="api-response">A resolução detalhada da questão aparecerá aqui após a submissão.</p>
@@ -78,44 +62,36 @@
     </footer>
 
     <script>
-        document.getElementById('question-form').addEventListener('submit', function(event) {
+        document.getElementById('generate-question').addEventListener('click', function(event) {
             event.preventDefault();
     
-            const questionType = document.getElementById('question-type').value;
-            let questionText = '';
-    
-            if (questionType === 'limite-fino') {
-                questionText = "Calcule o limite de: \\( \\lim_{x \\to 1} \\frac{x^2 - 1}{x - 1} \\)";
-            } else if (questionType === 'limite-infinito') {
-                questionText = "Calcule o limite de: \\( \\lim_{x \\to \\infty} \\frac{2x^2 + 3x}{x^2 - 4} \\)";
-            }
-    
-            // Exibe a questão gerada com MathJax
-            document.getElementById('generated-question').innerHTML = questionText;
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-    
-            // Enviar a questão gerada e a resposta do usuário para o servidor
-            fetch('/verificar-resposta', {
+            // Enviar solicitação para a API gerar uma questão aleatória sobre limites
+            fetch('/gerar-questao-limite', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    question: questionText,  // Questão gerada
-                    userAnswer: document.getElementById('response').value  // Resposta do usuário
+                    prompt: 'Crie uma questão aleatória de Cálculo 1 sobre limites, incluindo explicação detalhada e solução passo a passo.'
                 })
             })
             .then(response => response.json())
             .then(data => {
-                if(data.validacao) {
-                    document.getElementById('api-response').innerHTML = data.validacao;
-                } else {
-                    document.getElementById('api-response').innerHTML = "Resolução não encontrada.";
+                if (data.questao) {
+                    document.getElementById('generated-question').innerHTML = data.questao;
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+                    // Exibir resolução detalhada
+                    if (data.resolucao) {
+                        document.getElementById('api-response').innerHTML = data.resolucao;
+                    } else {
+                        document.getElementById('api-response').innerHTML = "Resolução não encontrada.";
+                    }
                 }
             })
             .catch(error => {
-                console.error('Erro ao verificar a resposta:', error);
-                alert('Erro ao verificar a resposta. Tente novamente!');
+                console.error('Erro ao gerar questão:', error);
+                alert('Erro ao gerar questão. Tente novamente!');
             });
         });
     </script>    

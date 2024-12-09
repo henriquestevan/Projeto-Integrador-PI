@@ -1,13 +1,30 @@
+require('dotenv').config();  // Carregar variáveis de ambiente (caso necessário)
 const express = require('express');
 const path = require('path');
-const axios = require('axios'); // Importa o Axios
-const fs = require('fs'); // Importa o módulo fs
+const axios = require('axios');
+const fs = require('fs');
+const cors = require('cors');  // Para permitir CORS
+
 const app = express();
 const PORT = 3000;
 
-// Sua chave da API OpenAI
-const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf-8'));
-const OPENAI_API_KEY = config.OPENAI_API_KEY;
+// Permitir todas as origens
+app.use(cors());  // Pode ser ajustado conforme as necessidades de segurança
+
+// Carregar chave da API do arquivo config.json
+let OPENAI_API_KEY = '';
+try {
+  const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf-8'));
+  OPENAI_API_KEY = config.OPENAI_API_KEY;
+} catch (error) {
+  console.error('Erro ao carregar o config.json ou chave não encontrada.', error);
+}
+
+// Verifique se a chave foi carregada corretamente
+if (!OPENAI_API_KEY) {
+  console.error('A chave da API não foi encontrada. Certifique-se de que o arquivo config.json contém a chave OPENAI_API_KEY.');
+  process.exit(1); // Encerra o servidor se a chave não for encontrada
+}
 
 // Configura o diretório público para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
@@ -17,122 +34,43 @@ app.use(express.json());
 
 // Rotas para servir as páginas HTML
 app.get('/limite', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'limite.html'));
+  res.sendFile(path.join(__dirname, 'public', 'limite.html'));
 });
 
-app.get('/derivada', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'derivada.html'));
-});
-
-app.get('/integral', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'integral.html'));
-});
-
-// Rota para gerar questão de Derivada
-app.post('/gerar-questao-derivada', async (req, res) => {
-    try {
-        const prompt = 'Crie uma questão de Cálculo 1 sobre derivadas, incluindo explicação detalhada e solução passo a passo.';
-        
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-4",
-            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
-            max_tokens: 200,
-            temperature: 0.7
-        }, {
-            headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`
-            }
-        });
-
-        const questao = response.data.choices[0].message.content.trim();
-        res.json({ questao: questao });
-    } catch (error) {
-        console.error('Erro ao gerar questão de derivada:', error);
-        res.status(500).json({ error: 'Erro ao gerar questão' });
-    }
-});
-
-// Rota para gerar questão de Integral
-app.post('/gerar-questao-integral', async (req, res) => {
-    try {
-        const prompt = 'Crie uma questão de Cálculo 1 sobre integrais, incluindo explicação detalhada e solução passo a passo.';
-        
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-4",
-            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
-            max_tokens: 200,
-            temperature: 0.7
-        }, {
-            headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`
-            }
-        });
-
-        const questao = response.data.choices[0].message.content.trim();
-        res.json({ questao: questao });
-    } catch (error) {
-        console.error('Erro ao gerar questão de integral:', error);
-        res.status(500).json({ error: 'Erro ao gerar questão' });
-    }
-});
-
-// Rota para gerar questão de Limite
+// Rota para gerar questão de Limite (modificado para questão aleatória)
 app.post('/gerar-questao-limite', async (req, res) => {
     try {
-        const prompt = 'Crie uma questão de Cálculo 1 sobre limites, incluindo explicação detalhada e solução passo a passo.';
-        
+        const prompt = req.body.prompt || 'Crie uma questão aleatória de Cálculo 1 sobre limites, incluindo explicação detalhada e solução passo a passo.';
+
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: "gpt-4",
-            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
+            messages: [
+                { role: "system", content: "Você é um assistente de cálculo." },
+                { role: "user", content: prompt }
+            ],
             max_tokens: 200,
             temperature: 0.7
         }, {
             headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`
+                'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                'Content-Type': 'application/json'
             }
         });
 
         const questao = response.data.choices[0].message.content.trim();
-        res.json({ questao: questao });
+
+        // Aqui você pode retornar a questão gerada e a resolução
+        res.json({
+            questao: questao,
+            resolucao: "Aqui está a resolução detalhada da questão gerada."  // Ajuste isso conforme necessário
+        });
+
     } catch (error) {
         console.error('Erro ao gerar questão de limite:', error);
         res.status(500).json({ error: 'Erro ao gerar questão' });
     }
 });
-
-// Rota para verificar a resposta do usuário
-app.post('/verificar-resposta', async (req, res) => {
-    try {
-        const { question, userAnswer } = req.body;
-
-        // Verifique se os dados estão sendo recebidos corretamente
-        console.log('Question recebida:', question);
-        console.log('Resposta do usuário recebida:', userAnswer);
-
-        const prompt = `Você gerou a questão: ${question}. A resposta do usuário foi: "${userAnswer}". Verifique se a resposta está correta.`;
-
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-4",
-            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
-            max_tokens: 200,
-            temperature: 0.7
-        }, {
-            headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`
-            }
-        });
-
-        const resposta = response.data.choices[0].message.content.trim();
-
-        // Envia a resposta de validação para o cliente
-        res.json({ validacao: resposta });
-
-    } catch (error) {
-        console.error('Erro ao verificar resposta:', error);
-        res.status(500).json({ error: 'Erro ao verificar resposta' });
-    }
-});
 // Inicializa o servidor
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
