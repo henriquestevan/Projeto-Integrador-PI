@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3000;
 
 // Sua chave da API OpenAI
-const OPENAI_API_KEY = '';
+const OPENAI_API_KEY = 'sua-chave-aqui';
 
 // Configura o diretório público para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
