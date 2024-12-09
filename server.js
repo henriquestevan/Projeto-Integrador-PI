@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios'); // Importa o Axios
+const fs = require('fs'); // Importa o módulo fs
 const app = express();
 const PORT = 3000;
 
@@ -32,12 +33,10 @@ app.post('/gerar-questao-derivada', async (req, res) => {
     try {
         const prompt = 'Crie uma questão de Cálculo 1 sobre derivadas, incluindo explicação detalhada e solução passo a passo.';
         
-        const response = await axios.post('https://api.openai.com/v1/completions', {
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: "gpt-4",
-            prompt: prompt,
+            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
             max_tokens: 200,
-            n: 1,
-            stop: null,
             temperature: 0.7
         }, {
             headers: {
@@ -45,9 +44,11 @@ app.post('/gerar-questao-derivada', async (req, res) => {
             }
         });
 
-        const questao = response.data.choices[0].text.trim();
+        // Exibe o conteúdo gerado pela API
+        const questao = response.data.choices[0].message.content.trim();
         res.json({ questao: questao });
     } catch (error) {
+        console.error('Erro ao gerar questão de derivada:', error);
         res.status(500).json({ error: 'Erro ao gerar questão' });
     }
 });
@@ -57,12 +58,10 @@ app.post('/gerar-questao-integral', async (req, res) => {
     try {
         const prompt = 'Crie uma questão de Cálculo 1 sobre integrais, incluindo explicação detalhada e solução passo a passo.';
         
-        const response = await axios.post('https://api.openai.com/v1/completions', {
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: "gpt-4",
-            prompt: prompt,
+            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
             max_tokens: 200,
-            n: 1,
-            stop: null,
             temperature: 0.7
         }, {
             headers: {
@@ -70,9 +69,10 @@ app.post('/gerar-questao-integral', async (req, res) => {
             }
         });
 
-        const questao = response.data.choices[0].text.trim();
+        const questao = response.data.choices[0].message.content.trim();
         res.json({ questao: questao });
     } catch (error) {
+        console.error('Erro ao gerar questão de integral:', error);
         res.status(500).json({ error: 'Erro ao gerar questão' });
     }
 });
@@ -82,12 +82,10 @@ app.post('/gerar-questao-limite', async (req, res) => {
     try {
         const prompt = 'Crie uma questão de Cálculo 1 sobre limites, incluindo explicação detalhada e solução passo a passo.';
         
-        const response = await axios.post('https://api.openai.com/v1/completions', {
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: "gpt-4",
-            prompt: prompt,
+            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
             max_tokens: 200,
-            n: 1,
-            stop: null,
             temperature: 0.7
         }, {
             headers: {
@@ -95,9 +93,10 @@ app.post('/gerar-questao-limite', async (req, res) => {
             }
         });
 
-        const questao = response.data.choices[0].text.trim();
+        const questao = response.data.choices[0].message.content.trim();
         res.json({ questao: questao });
     } catch (error) {
+        console.error('Erro ao gerar questão de limite:', error);
         res.status(500).json({ error: 'Erro ao gerar questão' });
     }
 });
