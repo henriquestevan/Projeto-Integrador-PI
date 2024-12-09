@@ -5,7 +5,8 @@ const app = express();
 const PORT = 3000;
 
 // Sua chave da API OpenAI
-const OPENAI_API_KEY = 'sua-chave-aqui';
+const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf-8'));
+const OPENAI_API_KEY = config.OPENAI_API_KEY;
 
 // Configura o diretório público para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
