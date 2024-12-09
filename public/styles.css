@@ -360,6 +360,7 @@ footer {
     padding: 20px;
     height: 100%;
     overflow-y: auto;
+    z-index: 10;
 }
 
 .page-theory .sidebar ul {
@@ -386,6 +387,7 @@ footer {
 .page-theory main {
     margin-left: 260px; /* Espaço para a barra lateral */
     padding: 20px;
+    z-index: 1;
 }
 
 /* Estilo dos Botões de Tópicos */
@@ -408,6 +410,7 @@ footer {
 /* Seções dos tópicos */
 .page-theory .content div {
     margin-bottom: 40px;
+    z-index: 2;
 }
 
 .page-theory .content div h3 {
