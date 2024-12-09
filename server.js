@@ -44,7 +44,6 @@ app.post('/gerar-questao-derivada', async (req, res) => {
             }
         });
 
-        // Exibe o conteúdo gerado pela API
         const questao = response.data.choices[0].message.content.trim();
         res.json({ questao: questao });
     } catch (error) {
@@ -101,6 +100,38 @@ app.post('/gerar-questao-limite', async (req, res) => {
     }
 });
 
+// Rota para verificar a resposta do usuário
+app.post('/verificar-resposta', async (req, res) => {
+    try {
+        const { question, userAnswer } = req.body;
+
+        // Verifique se os dados estão sendo recebidos corretamente
+        console.log('Question recebida:', question);
+        console.log('Resposta do usuário recebida:', userAnswer);
+
+        const prompt = `Você gerou a questão: ${question}. A resposta do usuário foi: "${userAnswer}". Verifique se a resposta está correta.`;
+
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+            model: "gpt-4",
+            messages: [{ role: "system", content: "Você é um assistente de cálculo." }, { role: "user", content: prompt }],
+            max_tokens: 200,
+            temperature: 0.7
+        }, {
+            headers: {
+                'Authorization': `Bearer ${OPENAI_API_KEY}`
+            }
+        });
+
+        const resposta = response.data.choices[0].message.content.trim();
+
+        // Envia a resposta de validação para o cliente
+        res.json({ validacao: resposta });
+
+    } catch (error) {
+        console.error('Erro ao verificar resposta:', error);
+        res.status(500).json({ error: 'Erro ao verificar resposta' });
+    }
+});
 // Inicializa o servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);

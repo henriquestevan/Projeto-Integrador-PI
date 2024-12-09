@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles.css">
     <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+    </script>
 </head>
 <body class="page-theory">
     <header>
@@ -61,7 +61,7 @@
             <section id="response-section">
                 <h3>Sua Resposta:</h3>
                 <input type="text" id="response" placeholder="Digite sua resposta">
-                <button onclick="checkAnswer()">Verificar Resposta</button>
+                <button id="check-btn">Verificar Resposta</button>
                 <p id="response-feedback"></p>
             </section>
 
@@ -78,53 +78,46 @@
     </footer>
 
     <script>
-        // Enviar a questão gerada para o servidor usando fetch
         document.getElementById('question-form').addEventListener('submit', function(event) {
             event.preventDefault();
-
+    
             const questionType = document.getElementById('question-type').value;
             let questionText = '';
-
+    
             if (questionType === 'limite-fino') {
                 questionText = "Calcule o limite de: \\( \\lim_{x \\to 1} \\frac{x^2 - 1}{x - 1} \\)";
             } else if (questionType === 'limite-infinito') {
                 questionText = "Calcule o limite de: \\( \\lim_{x \\to \\infty} \\frac{2x^2 + 3x}{x^2 - 4} \\)";
             }
-
+    
             // Exibe a questão gerada com MathJax
             document.getElementById('generated-question').innerHTML = questionText;
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-
-            // Enviar a questão gerada para o servidor para obter a resolução
-            fetch('/generate-resolution', {
+    
+            // Enviar a questão gerada e a resposta do usuário para o servidor
+            fetch('/verificar-resposta', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    question: questionText
+                    question: questionText,  // Questão gerada
+                    userAnswer: document.getElementById('response').value  // Resposta do usuário
                 })
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('api-response').innerHTML = data.resolution;
+                if(data.validacao) {
+                    document.getElementById('api-response').innerHTML = data.validacao;
+                } else {
+                    document.getElementById('api-response').innerHTML = "Resolução não encontrada.";
+                }
             })
-            .catch(error => console.error('Erro ao gerar a resolução:', error));
+            .catch(error => {
+                console.error('Erro ao verificar a resposta:', error);
+                alert('Erro ao verificar a resposta. Tente novamente!');
+            });
         });
-
-        function checkAnswer() {
-            const userResponse = document.getElementById('response').value;
-            const feedback = document.getElementById('response-feedback');
-
-            // Respostas esperadas (simulando com valores)
-            if (userResponse === "2") {
-                feedback.textContent = "Resposta correta!";
-                feedback.style.color = "green";
-            } else {
-                feedback.textContent = "Resposta incorreta, tente novamente.";
-                feedback.style.color = "red";
-            }
-        }
-    </script>
+    </script>    
 </body>
 </html>
