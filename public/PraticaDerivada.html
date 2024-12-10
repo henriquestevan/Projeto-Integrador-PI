@@ -18,10 +18,10 @@
                 <span class="bar"></span>
             </div>
             <ul class="nav-list" id="nav-list">
-                <li><a href="/limite">Limites</a></li>
-                <li><a href="/derivada" class="active">Derivadas</a></li>
-                <li><a href="/integral">Integrais</a></li>
-                <li><a href="/historia">História do Cálculo</a></li>
+                <li><a href="/PraticaLimite">Limites</a></li>
+                <li><a href="/PraticaDerivada" class="active">Derivadas</a></li>
+                <li><a href="/PraticaIntegral">Integrais</a></li>
+                <li><a href="/HistoriaCalculo">História do Cálculo</a></li>
             </ul>
         </nav>
     </header>
@@ -38,11 +38,11 @@
 
         <!-- Instrução e Formulário para Questões de Prática -->
         <section class="intro-section">
-            <h2>Questões de Derivadas</h2>
+            <h2>Questões de Derivada</h2>
             <p>A API irá gerar uma questão aleatória de derivadas para você.</p>
             
             <!-- Botão para Gerar Questão -->
-            <button id="generate-question">Gerar Questão de Derivadas</button>
+            <button id="generate-question">Gerar Questão de Derivada</button>
 
             <section id="question-section">
                 <h3>Questão Gerada:</h3>
@@ -77,9 +77,16 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.resultado) {
-                    document.getElementById('generated-question').innerHTML = data.resultado;
+                if (data.questao) {
+                    document.getElementById('generated-question').innerHTML = data.questao;
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+                    // Exibir resolução detalhada
+                    if (data.resolucao) {
+                        document.getElementById('api-response').innerHTML = data.resolucao;
+                    } else {
+                        document.getElementById('api-response').innerHTML = "Resolução não encontrada.";
+                    }
                 }
             })
             .catch(error => {
