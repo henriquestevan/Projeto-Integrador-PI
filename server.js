@@ -32,15 +32,10 @@ app.get('/TeoriaDerivada', (req, res) => res.sendFile(path.join(__dirname, 'publ
 app.get('/TeoriaIntegral', (req, res) => res.sendFile(path.join(__dirname, 'public', 'TeoriaIntegral.html')));
 
 // Rotas da API para gerar questões e resoluções
-// Função para corrigir formatação de LaTeX
-function corrigirSimbolosMatematicos(texto) {
-    return texto
-        .replace(/\\\(/g, '\\[') // Corrige abertura \( para \[
-        .replace(/\\\)/g, '\\]') // Corrige fechamento \) para \]
-        .replace(/\$\$(.*?)\$\$/g, '\\[$1\\]') // Corrige $$...$$ para \[...\]
-        .replace(/\$(.*?)\$/g, '\\($1\\)'); // Corrige $...$ para \(...\)
-}
-
+// Função para normalizar expressões LaTeX
+function normalizeLatex(text) {
+    // Remove espaços desnecessários e ajusta formatação (exemplo)
+    return text.replace(/\\\s+/g, '').trim();}
 // Endpoint com a correção
 app.post('/api/gerar-limite', async (req, res) => {
   try {
@@ -49,6 +44,7 @@ app.post('/api/gerar-limite', async (req, res) => {
           Varie os tipos de questões e use diferentes exemplos.
           Formate todas as expressões matemáticas com delimitadores LaTeX.
       `;
+      console.log('Chave da API:', OPENAI_API_KEY);
 
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           model: "gpt-3.5-turbo",
@@ -81,6 +77,7 @@ app.post('/api/gerar-derivada', async (req, res) => {
           Varie os tipos de questões e use diferentes exemplos.
           Formate todas as expressões matemáticas com delimitadores LaTeX.
       `;
+      console.log('Chave da API:', OPENAI_API_KEY);
 
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           model: "gpt-3.5-turbo",
@@ -113,6 +110,8 @@ app.post('/api/gerar-integral', async (req, res) => {
           Varie os tipos de questões e use diferentes exemplos.
           Formate todas as expressões matemáticas com delimitadores LaTeX.
       `;
+
+      console.log('Chave da API:', OPENAI_API_KEY);
 
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           model: "gpt-3.5-turbo",

@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parte Prática - Integrais</title>
     <link rel="stylesheet" href="/styles.css">
-    <script type="text/javascript" async
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body class="page-practice">
     <header>
@@ -31,70 +29,60 @@
             <h1>Prática de Integrais</h1>
         </section>
 
-        <!-- Botões de Teoria e Prática -->
         <section class="content-switch">
             <a href="/TeoriaIntegral.html" id="teoria-btn" class="switch-button">Parte Teórica</a>
         </section>
 
-        <!-- Instrução e Formulário para Questões de Prática -->
         <section class="intro-section">
             <h2>Questões de Integrais</h2>
             <p>A API irá gerar uma questão aleatória de integrais para você.</p>
-            
-            <!-- Botão para Gerar Questão -->
+
             <button id="generate-question">Gerar Questão de Integrais</button>
 
             <section id="question-section">
                 <h3>Questão Gerada:</h3>
                 <p id="generated-question">Aqui aparecerá a questão gerada.</p>
             </section>
-
-            <!-- Exibir resolução gerada pela API -->
-            <section id="api-response-section">
-                <h3>Resolução Detalhada:</h3>
-                <p id="api-response">A resolução detalhada da questão aparecerá aqui após a submissão.</p>
-            </section>
         </section>
     </main>
 
-    <footer class="page-practice">
+    <footer>
         <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        document.getElementById('generate-integral-question').addEventListener('click', function (event) {
-    event.preventDefault();
+        document.getElementById('generate-question').addEventListener('click', function (event) {
+            event.preventDefault();
 
-    // Enviar requisição para gerar a questão de integrais
-    fetch('/api/gerar-integral', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Erro ao comunicar com o servidor.');
-            }
-            return response.json();
-        })
-        .then((data) => {
-            const questionElement = document.getElementById('generated-integral-question');
-            questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
-            
-            // Reprocessar símbolos matemáticos com MathJax
-            if (window.MathJax) {
-                MathJax.typesetPromise().catch((err) =>
-                    console.error('Erro ao renderizar MathJax:', err)
-                );
-            }
-        })
-        .catch((error) => {
-            console.error('Erro ao gerar questão:', error);
-            alert('Erro ao gerar questão. Tente novamente!');
+            // Enviar requisição para gerar a questão de integrais
+            fetch('/api/gerar-integral', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao comunicar com o servidor.');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    const questionElement = document.getElementById('generated-question');
+                    questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
+
+                    // Reprocessar símbolos matemáticos com MathJax
+                    if (window.MathJax) {
+                        MathJax.typesetPromise().catch((err) =>
+                            console.error('Erro ao renderizar MathJax:', err)
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error('Erro ao gerar questão:', error);
+                    alert('Erro ao gerar questão. Tente novamente!');
+                });
         });
-});
-
-    </script>    
+    </script>
 </body>
 </html>
