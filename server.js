@@ -37,103 +37,116 @@ function normalizeLatex(text) {
     // Remove espaços desnecessários e ajusta formatação (exemplo)
     return text.replace(/\\\s+/g, '').trim();}
 // Endpoint com a correção
+const promptsLimites = [
+    "Crie uma questão simples sobre limites envolvendo funções racionais.",
+    "Crie uma questão sobre limites laterais envolvendo um ponto de descontinuidade.",
+    "Crie uma questão desafiadora sobre limites envolvendo a regra de L'Hôpital.",
+    "Crie uma questão conceitual sobre limites infinitos e suas propriedades.",
+    "Crie uma questão prática sobre limites envolvendo funções trigonométricas."
+];
+
 app.post('/api/gerar-limite', async (req, res) => {
-  try {
-      const prompt = `
-          Crie uma questão de cálculo 1 sobre limites.
-          Varie os tipos de questões e use diferentes exemplos.
-          Formate todas as expressões matemáticas com delimitadores LaTeX.
-      `;
-      console.log('Chave da API:', OPENAI_API_KEY);
+    try {
+        // Escolher um prompt aleatório
+        const prompt = promptsLimites[Math.floor(Math.random() * promptsLimites.length)];
 
-      const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-          model: "gpt-3.5-turbo",
-          messages: [
-              { role: "system", content: "Você é um assistente especializado em cálculo." },
-              { role: "user", content: prompt }
-          ],
-          max_tokens: 500,
-          temperature: 0.7,
-      }, {
-          headers: {
-              Authorization: `Bearer ${OPENAI_API_KEY}`,
-              "Content-Type": "application/json",
-          },
-      });
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "Você é um assistente especializado em cálculo." },
+                { role: "user", content: prompt }
+            ],
+            max_tokens: 500,
+            temperature: 0.7,
+        }, {
+            headers: {
+                Authorization: `Bearer ${OPENAI_API_KEY}`,
+                "Content-Type": "application/json",
+            },
+        });
 
-      const resultado = normalizeLatex(response.data.choices[0].message.content.trim());
-      res.json({ resultado });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao gerar questão de limite.' });
-  }
+        const resultado = response.data.choices[0].message.content.trim();
+        res.json({ resultado });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao gerar questão de limite.' });
+    }
 });
 
+
+
+const promptsDerivadas = [
+    "Crie uma questão simples sobre derivadas de polinômios.",
+    "Crie uma questão prática sobre derivadas envolvendo funções trigonométricas.",
+    "Crie uma questão desafiadora sobre derivadas envolvendo a regra do produto e do quociente.",
+    "Crie uma questão conceitual sobre a derivada como taxa de variação instantânea.",
+    "Crie uma questão sobre derivadas envolvendo a regra da cadeia em funções compostas."
+];
 
 app.post('/api/gerar-derivada', async (req, res) => {
-  try {
-      const prompt = `
-          Crie uma questão de cálculo 1 sobre derivadas.
-          Varie os tipos de questões e use diferentes exemplos.
-          Formate todas as expressões matemáticas com delimitadores LaTeX.
-      `;
-      console.log('Chave da API:', OPENAI_API_KEY);
+    try {
+        // Escolher um prompt aleatório para derivadas
+        const prompt = promptsDerivadas[Math.floor(Math.random() * promptsDerivadas.length)];
 
-      const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-          model: "gpt-3.5-turbo",
-          messages: [
-              { role: "system", content: "Você é um assistente especializado em cálculo." },
-              { role: "user", content: prompt }
-          ],
-          max_tokens: 500,
-          temperature: 0.7,
-      }, {
-          headers: {
-              Authorization: `Bearer ${OPENAI_API_KEY}`,
-              "Content-Type": "application/json",
-          },
-      });
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "Você é um assistente especializado em cálculo." },
+                { role: "user", content: prompt }
+            ],
+            max_tokens: 500,
+            temperature: 0.7,
+        }, {
+            headers: {
+                Authorization: `Bearer ${OPENAI_API_KEY}`,
+                "Content-Type": "application/json",
+            },
+        });
 
-      const resultado = normalizeLatex(response.data.choices[0].message.content.trim());
-      res.json({ resultado });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao gerar questão de derivada.' });
-  }
+        const resultado = response.data.choices[0].message.content.trim();
+        res.json({ resultado });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao gerar questão de derivada.' });
+    }
 });
 
 
+
+const promptsIntegrais = [
+    "Crie uma questão simples sobre integrais definidas envolvendo polinômios.",
+    "Crie uma questão prática sobre integrais indefinidas de funções trigonométricas.",
+    "Crie uma questão desafiadora sobre integrais envolvendo substituição trigonométrica.",
+    "Crie uma questão conceitual sobre o Teorema Fundamental do Cálculo.",
+    "Crie uma questão sobre integrais que exija o uso de integração por partes."
+];
+
 app.post('/api/gerar-integral', async (req, res) => {
-  try {
-      const prompt = `
-          Crie uma questão de cálculo 1 sobre integrais.
-          Varie os tipos de questões e use diferentes exemplos.
-          Formate todas as expressões matemáticas com delimitadores LaTeX.
-      `;
+    try {
+        // Escolher um prompt aleatório para integrais
+        const prompt = promptsIntegrais[Math.floor(Math.random() * promptsIntegrais.length)];
 
-      console.log('Chave da API:', OPENAI_API_KEY);
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "Você é um assistente especializado em cálculo." },
+                { role: "user", content: prompt }
+            ],
+            max_tokens: 500,
+            temperature: 0.7,
+        }, {
+            headers: {
+                Authorization: `Bearer ${OPENAI_API_KEY}`,
+                "Content-Type": "application/json",
+            },
+        });
 
-      const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-          model: "gpt-3.5-turbo",
-          messages: [
-              { role: "system", content: "Você é um assistente especializado em cálculo." },
-              { role: "user", content: prompt }
-          ],
-          max_tokens: 500,
-          temperature: 0.7,
-      }, {
-          headers: {
-              Authorization: `Bearer ${OPENAI_API_KEY}`,
-              "Content-Type": "application/json",
-          },
-      });
-
-      const resultado = normalizeLatex(response.data.choices[0].message.content.trim());
-      res.json({ resultado });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao gerar questão de integral.' });
-  }
+        const resultado = response.data.choices[0].message.content.trim();
+        res.json({ resultado });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao gerar questão de integral.' });
+    }
 });
 
 
