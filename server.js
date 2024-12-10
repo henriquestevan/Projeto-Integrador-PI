@@ -32,7 +32,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Rotas para servir páginas HTML
+// Rotas para servir páginas HTML principais e teóricas
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -41,6 +41,31 @@ app.get('/limite', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'limite.html'));
 });
 
+app.get('/derivada', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'derivada.html'));
+});
+
+app.get('/integral', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'integral.html'));
+});
+
+app.get('/historia', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'historia.html'));
+});
+
+app.get('/TeoriaLimites.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'TeoriaLimites.html'));
+});
+
+app.get('/TeoriaDerivada.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'TeoriaDerivada.html'));
+});
+
+app.get('/TeoriaIntegral.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'TeoriaIntegral.html'));
+});
+
+// Rotas para páginas de prática
 app.get('/PraticaLimite', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'PraticaLimite.html'));
 });
@@ -60,12 +85,12 @@ app.post('/api/gerar-limite', async (req, res) => {
   try {
     const prompt = 'Crie uma questão curta de cálculo 1 sobre limites com a resolução detalhada, mas com explicações objetivas e claras.';
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      model: "gpt-3.5-turbo", // Use gpt-3.5-turbo para custos mais baixos
+      model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "Você é um assistente de cálculo que responde de forma concisa." },
         { role: "user", content: prompt }
       ],
-      max_tokens: 300, // Limite de tokens para economizar
+      max_tokens: 300,
       temperature: 0.5
     }, {
       headers: {
