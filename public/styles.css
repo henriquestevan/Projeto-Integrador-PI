@@ -688,4 +688,17 @@ footer.page-practice p {
     line-height: 1.5;
     text-align: center;
 }
+/* Estilos específicos para as caixas da página principal */
+.page-main-content-box {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f4f6f8; /* Cor de fundo mais clara */
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    box-sizing: border-box;
+    text-align: center;
+    min-height: 150px; /* Define altura mínima */
+}
 
