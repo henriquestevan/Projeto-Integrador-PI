@@ -100,43 +100,39 @@
 
         // Evento para gerar a resolução
         document.getElementById('generate-resolution').addEventListener('click', function (event) {
-            event.preventDefault();
+    event.preventDefault();
 
-            if (!lastGeneratedQuestion) {
-                alert('Por favor, gere uma questão primeiro!');
-                return;
+    // Chamar o backend para gerar a resolução
+    fetch('/api/gerar-resolucao-derivada', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Erro ao comunicar com o servidor.');
             }
-
-            // Solicitar a resolução
-            fetch('/api/gerar-resolucao-derivada', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ question: lastGeneratedQuestion }) // Envia a questão gerada para a API
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao comunicar com o servidor.');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    const resolutionElement = document.getElementById('generated-resolution');
-                    resolutionElement.innerHTML = data.resultado || 'Nenhuma resolução encontrada.';
-
-                    // Reprocessar símbolos matemáticos com MathJax
-                    if (window.MathJax) {
-                        MathJax.typesetPromise().catch((err) =>
-                            console.error('Erro ao renderizar MathJax:', err)
-                        );
-                    }
-                })
-                .catch((error) => {
-                    console.error('Erro ao gerar resolução:', error);
-                    alert('Erro ao gerar resolução. Tente novamente!');
-                });
+            return response.json();
+        })
+        .then((data) => {
+            const resolutionElement = document.getElementById('generated-resolution');
+            resolutionElement.innerHTML = data.resolucao || 'Nenhuma resolução encontrada.';
+            
+            // Reprocessar símbolos matemáticos com MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise().catch((err) =>
+                    console.error('Erro ao renderizar MathJax:', err)
+                );
+            }
+        })
+        .catch((error) => {
+            console.error('Erro ao gerar resolução:', error);
+            alert('Erro ao gerar resolução. Tente novamente!');
         });
+});
+
+
     </script>
 </body>
 </html>
