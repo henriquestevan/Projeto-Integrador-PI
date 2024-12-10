@@ -62,31 +62,39 @@
     </footer>
 
     <script>
-        document.getElementById('generate-question').addEventListener('click', function(event) {
-            event.preventDefault();
-    
-            // Enviar solicitação para a API gerar uma questão aleatória sobre integrais
-            fetch('/api/gerar-integral', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    prompt: 'Crie uma questão aleatória de Cálculo 1 sobre integrais, incluindo explicação detalhada e solução passo a passo.'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.resultado) {
-                    document.getElementById('generated-question').innerHTML = data.resultado;
-                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao gerar questão:', error);
-                alert('Erro ao gerar questão. Tente novamente!');
-            });
+        document.getElementById('generate-integral-question').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    // Enviar requisição para gerar a questão de integrais
+    fetch('/api/gerar-integral', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Erro ao comunicar com o servidor.');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const questionElement = document.getElementById('generated-integral-question');
+            questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
+            
+            // Reprocessar símbolos matemáticos com MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise().catch((err) =>
+                    console.error('Erro ao renderizar MathJax:', err)
+                );
+            }
+        })
+        .catch((error) => {
+            console.error('Erro ao gerar questão:', error);
+            alert('Erro ao gerar questão. Tente novamente!');
         });
+});
+
     </script>    
 </body>
 </html>
