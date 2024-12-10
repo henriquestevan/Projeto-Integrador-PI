@@ -628,4 +628,64 @@ footer.page-practice {
 footer.page-practice p {
     margin: 0;
 }
+/* Seções de conteúdo (Questões e Resolução) */
+.content-section {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    box-sizing: border-box;
+    text-align: left;
+}
+/* Estilo compartilhado para as caixas */
+.content-box {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Botões de ação */
+.action-button {
+    background-color: #ffcc00; /* Amarelo padrão */
+    color: #1a2940; /* Azul escuro */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto 20px auto; /* Centralizar e adicionar espaço abaixo */
+}
+
+.action-button:hover {
+    background-color: #e6b800; /* Amarelo mais escuro ao passar o mouse */
+}
+
+/* Texto dentro das seções */
+#resolution-section h3,
+#question-section h3 {
+    font-size: 1.2rem;
+    color: #1a2940;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#resolution-section p,
+#question-section p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+}
 
