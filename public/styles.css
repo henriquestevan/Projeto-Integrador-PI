@@ -480,3 +480,152 @@ footer {
 }
 
 }
+/* Estilos aplicados apenas às páginas práticas */
+body.page-practice {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: #f4f6f8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Banner */
+.banner-practice {
+    background-color: #1a2940;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.banner-practice h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Botão Parte Teórica */
+.content-switch {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.switch-button {
+    background-color: #ffcc00;
+    color: #1a2940;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.switch-button:hover {
+    background-color: #e6b800;
+}
+
+/* Área principal */
+main.page-practice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.intro-section-practice {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.intro-section-practice h2 {
+    font-size: 1.8rem;
+    color: #1a2940;
+    margin-bottom: 20px;
+}
+
+.intro-section-practice p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Botão para gerar questões */
+button#generate-question {
+    background-color: #ffcc00;
+    color: #1a2940;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+button#generate-question:hover {
+    background-color: #e6b800;
+}
+
+/* Seções de Questão e Resolução */
+#question-section, #api-response-section {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+#question-section h3, #api-response-section h3 {
+    font-size: 1.2rem;
+    color: #1a2940;
+    margin-bottom: 10px;
+}
+
+#question-section p, #api-response-section p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Rodapé */
+footer.page-practice {
+    background-color: #1a2940;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer.page-practice p {
+    margin: 0;
+}
+
