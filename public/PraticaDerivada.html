@@ -39,11 +39,21 @@
 
             <button id="generate-question">Gerar Questão de Derivada</button>
 
-            <section id="question-section">
+        <section id="question-section" class="content-section">
                 <h3>Questão Gerada:</h3>
-                <p id="generated-question">Aqui aparecerá a questão gerada.</p>
+                <div class="content-box">
+                    <p id="generated-question">Aqui aparecerá a questão gerada.</p>
+                </div>
             </section>
+            
+        <section id="resolution-section" class="content-section">
+                <button id="generate-resolution" class="action-button">Gerar Resolução</button>
+                <h3>Resolução Gerada:</h3>
+                <div class="content-box">
+                    <p id="generated-resolution">Aqui aparecerá a resolução gerada.</p>
+                </div>
         </section>
+        
     </main>
 
     <footer class="page-practice">
@@ -51,10 +61,13 @@
     </footer>
 
     <script>
+        let lastGeneratedQuestion = ''; // Armazena a última questão gerada
+
+        // Evento para gerar a questão
         document.getElementById('generate-question').addEventListener('click', function (event) {
             event.preventDefault();
 
-            // Enviar requisição para gerar a questão de derivadas
+            // Solicitar a questão
             fetch('/api/gerar-derivada', {
                 method: 'POST',
                 headers: {
@@ -70,7 +83,8 @@
                 .then((data) => {
                     const questionElement = document.getElementById('generated-question');
                     questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
-                    
+                    lastGeneratedQuestion = data.resultado || ''; // Armazena a questão gerada
+
                     // Reprocessar símbolos matemáticos com MathJax
                     if (window.MathJax) {
                         MathJax.typesetPromise().catch((err) =>
@@ -83,6 +97,42 @@
                     alert('Erro ao gerar questão. Tente novamente!');
                 });
         });
+
+        // Evento para gerar a resolução
+        document.getElementById('generate-resolution').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    // Chamar o backend para gerar a resolução
+    fetch('/api/gerar-resolucao-derivada', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Erro ao comunicar com o servidor.');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const resolutionElement = document.getElementById('generated-resolution');
+            resolutionElement.innerHTML = data.resolucao || 'Nenhuma resolução encontrada.';
+            
+            // Reprocessar símbolos matemáticos com MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise().catch((err) =>
+                    console.error('Erro ao renderizar MathJax:', err)
+                );
+            }
+        })
+        .catch((error) => {
+            console.error('Erro ao gerar resolução:', error);
+            alert('Erro ao gerar resolução. Tente novamente!');
+        });
+});
+
+
     </script>
 </body>
 </html>

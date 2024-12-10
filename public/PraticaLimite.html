@@ -39,11 +39,21 @@
 
             <button id="generate-question">Gerar Questão de Limite</button>
 
-            <section id="question-section">
+        <section id="question-section" class="content-section">
                 <h3>Questão Gerada:</h3>
-                <p id="generated-question">Aqui aparecerá a questão gerada.</p>
-            </section>
+                <div class="content-box">
+                    <p id="generated-question">Aqui aparecerá a questão gerada.</p>
+                </div>
+         </section>
+            
+         <section id="resolution-section" class="content-section">
+                <button id="generate-resolution" class="action-button">Gerar Resolução</button>
+                <h3>Resolução Gerada:</h3>
+                <div class="content-box">
+                    <p id="generated-resolution">Aqui aparecerá a resolução gerada.</p>
+                </div>
         </section>
+            
     </main>
 
     <footer>
@@ -51,38 +61,80 @@
     </footer>
 
     <script>
-        document.getElementById('generate-question').addEventListener('click', function (event) {
-    event.preventDefault();
+        let ultimaQuestaoLimite = ""; // Variável para armazenar a última questão gerada
 
-    // Enviar requisição para gerar a questão
-    fetch('/api/gerar-limite', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Erro ao comunicar com o servidor.');
-            }
-            return response.json();
-        })
-        .then((data) => {
-            const questionElement = document.getElementById('generated-question');
-            questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
-            
-            // Reprocessar símbolos matemáticos com MathJax
-            if (window.MathJax) {
-                MathJax.typesetPromise().catch((err) =>
-                    console.error('Erro ao renderizar MathJax:', err)
-                );
-            }
-        })
-        .catch((error) => {
-            console.error('Erro ao gerar questão:', error);
-            alert('Erro ao gerar questão. Tente novamente!');
+        document.getElementById('generate-question').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // Enviar requisição para gerar a questão de limite
+            fetch('/api/gerar-limite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao comunicar com o servidor.');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    const questionElement = document.getElementById('generated-question');
+                    questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
+                    ultimaQuestaoLimite = data.resultado; // Armazenar a última questão gerada
+
+                    // Reprocessar símbolos matemáticos com MathJax
+                    if (window.MathJax) {
+                        MathJax.typesetPromise().catch((err) =>
+                            console.error('Erro ao renderizar MathJax:', err)
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error('Erro ao gerar questão:', error);
+                    alert('Erro ao gerar questão. Tente novamente!');
+                });
         });
-});
+
+        document.getElementById('generate-resolution').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (!ultimaQuestaoLimite) {
+                alert('Por favor, gere uma questão primeiro!');
+                return;
+            }
+
+            // Enviar requisição para gerar a resolução da questão de limite
+            fetch('/api/gerar-resolucao-limite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ question: ultimaQuestaoLimite })
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao comunicar com o servidor.');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    const resolutionElement = document.getElementById('generated-resolution');
+                    resolutionElement.innerHTML = data.resolucao || 'Nenhuma resolução encontrada.';
+
+                    // Reprocessar símbolos matemáticos com MathJax
+                    if (window.MathJax) {
+                        MathJax.typesetPromise().catch((err) =>
+                            console.error('Erro ao renderizar MathJax:', err)
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error('Erro ao gerar resolução:', error);
+                    alert('Erro ao gerar resolução. Tente novamente!');
+                });
+        });
     </script>
 </body>
 </html>
