@@ -17,7 +17,7 @@ body {
 /* Navbar e Menu Hamburguer */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     background-color: #2E3B55; /* Azul escuro discreto */
     padding: 10px 20px;
@@ -704,7 +704,7 @@ footer.page-practice p {
 
 .back-button {
     position: fixed; /* Fixa no canto da tela */
-    top: 10px; /* Margem superior */
+    top: 6px; /* Margem superior */
     left: 10px; /* Margem esquerda */
     padding: 10px 20px; /* Espaçamento interno */
     background-color: #ffcc00; /* Cor verde */
