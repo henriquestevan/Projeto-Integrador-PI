@@ -286,7 +286,7 @@ footer {
 /* Navbar e Menu Hamburguer */
 .page-theory .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     background-color: #2E3B55; /* Azul escuro discreto */
     padding: 10px 20px;
