@@ -171,6 +171,7 @@ main {
     background-color: #003366;
 }
 
+
 /* Rodapé */
 footer {
     text-align: center;
@@ -641,7 +642,7 @@ footer.page-practice p {
     text-align: left;
 }
 /* Estilo compartilhado para as caixas */
-.content-box {
+.content-box-pratica{
     margin: 20px auto;
     padding: 15px;
     border-radius: 5px;
