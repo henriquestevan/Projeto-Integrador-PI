@@ -8,9 +8,10 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
     "axios": "^1.7.9",
-    "express": "^4.21.1"
+    "dotenv": "^16.0.3",
+    "express": "^4.21.1",
+    "openai": "^4.76.1"
   },
   "engines": {
     "node": "20.x"
@@ -18,4 +19,3 @@
   "author": "Henrique-Joao",
   "license": "MIT"
 }
-
