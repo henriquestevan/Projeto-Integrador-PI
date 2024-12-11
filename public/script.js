@@ -53,3 +53,8 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+function goToHome() {
+    // Redireciona para a página inicial
+    window.location.href = "index.html"; // Substitua "index.html" pelo caminho da sua tela inicial
+  }
