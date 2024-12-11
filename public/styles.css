@@ -123,14 +123,14 @@ main {
 /* Estilo das Seções */
 .content-box {
     text-align: center;
-    padding: 80px 20px;
-    color: #fff;
+    padding: 40px 20px;
+    color: #000000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 40vh;
+    min-height: 30vh;
     animation: fadeIn 1.5s ease-in-out;
     background-color: #6C757D; /* Cinza suave */
     margin-bottom: 20px;
@@ -701,4 +701,22 @@ footer.page-practice p {
     text-align: center;
     min-height: 150px; /* Define altura mínima */
 }
+
+.back-button {
+    position: fixed; /* Fixa no canto da tela */
+    top: 10px; /* Margem superior */
+    left: 10px; /* Margem esquerda */
+    padding: 10px 20px; /* Espaçamento interno */
+    background-color: #ffcc00; /* Cor verde */
+    color: #1a2940; /* Cor do texto */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Borda arredondada */
+    font-size: 16px; /* Tamanho do texto */
+    cursor: pointer; /* Mostra o ponteiro ao passar o mouse */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+  }
+  
+  .back-button:hover {
+    background-color: #e6b800; /* Cor ao passar o mouse */
+  }
 
