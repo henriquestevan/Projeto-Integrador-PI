@@ -286,7 +286,7 @@ footer {
 /* Navbar e Menu Hamburguer */
 .page-theory .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     background-color: #2E3B55; /* Azul escuro discreto */
     padding: 10px 20px;
@@ -352,7 +352,7 @@ footer {
 /* Barra Lateral para os Tópicos */
 .page-theory .sidebar {
     position: fixed;
-    top: 0;
+    top: 30px;
     left: 0;
     width: 250px;
     background-color: #2E3B55;
@@ -704,8 +704,8 @@ footer.page-practice p {
 
 .back-button {
     position: fixed; /* Fixa no canto da tela */
-    top: 6px; /* Margem superior */
-    left: 10px; /* Margem esquerda */
+    top: 2px; /* Margem superior */
+    left: 20px; /* Margem esquerda */
     padding: 10px 20px; /* Espaçamento interno */
     background-color: #ffcc00; /* Cor verde */
     color: #1a2940; /* Cor do texto */
