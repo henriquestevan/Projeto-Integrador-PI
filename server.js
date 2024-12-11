@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
-require('dotenv').config();
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 if (!OPENAI_API_KEY) {
@@ -19,83 +21,61 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Rotas das páginas HTML
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/limite', (req, res) => res.sendFile(path.join(__dirname, 'public', 'limite.html')));
-app.get('/derivada', (req, res) => res.sendFile(path.join(__dirname, 'public', 'derivada.html')));
-app.get('/integral', (req, res) => res.sendFile(path.join(__dirname, 'public', 'integral.html')));
-app.get('/PraticaLimite', (req, res) => res.sendFile(path.join(__dirname, 'public', 'PraticaLimite.html')));
-app.get('/PraticaDerivada', (req, res) => res.sendFile(path.join(__dirname, 'public', 'PraticaDerivada.html')));
-app.get('/PraticaIntegral', (req, res) => res.sendFile(path.join(__dirname, 'public', 'PraticaIntegral.html')));
-app.get('/TeoriaLimites', (req, res) => res.sendFile(path.join(__dirname, 'public', 'TeoriaLimites.html')));
-app.get('/TeoriaDerivada', (req, res) => res.sendFile(path.join(__dirname, 'public', 'TeoriaDerivada.html')));
-app.get('/TeoriaIntegral', (req, res) => res.sendFile(path.join(__dirname, 'public', 'TeoriaIntegral.html')));
+const htmlRoutes = [
+    { route: '/', file: 'index.html' },
+    { route: '/limite', file: 'limite.html' },
+    { route: '/derivada', file: 'derivada.html' },
+    { route: '/integral', file: 'integral.html' },
+    { route: '/PraticaLimite', file: 'PraticaLimite.html' },
+    { route: '/PraticaDerivada', file: 'PraticaDerivada.html' },
+    { route: '/PraticaIntegral', file: 'PraticaIntegral.html' },
+    { route: '/TeoriaLimites', file: 'TeoriaLimites.html' },
+    { route: '/TeoriaDerivada', file: 'TeoriaDerivada.html' },
+    { route: '/TeoriaIntegral', file: 'TeoriaIntegral.html' },
+];
+
+htmlRoutes.forEach(({ route, file }) => {
+    app.get(route, (req, res) => res.sendFile(path.join(__dirname, 'public', file)));
+});
 
 // Variáveis globais para armazenar as últimas questões geradas
 let ultimaQuestaoLimite = '';
+let ultimaQuestaoDerivada = '';
+let ultimaQuestaoIntegral = '';
 
 // Função para normalizar expressões LaTeX
 function normalizeLatex(text) {
     return text.replace(/\s+/g, ' ').trim();
 }
 
-// Endpoints para limites
-const promptsLimites = [
-    "Crie uma questão simples sobre limites envolvendo funções racionais.",
-    "Crie uma questão sobre limites laterais envolvendo um ponto de descontinuidade.",
-    "Crie uma questão desafiadora sobre limites envolvendo a regra de L'Hôpital.",
-    "Crie uma questão conceitual sobre limites infinitos e suas propriedades.",
-    "Crie uma questão prática sobre limites envolvendo funções trigonométricas."
-];
+// Lista de prompts
+const prompts = {
+    limites: [
+        "Crie uma questão simples sobre limites envolvendo funções racionais.",
+        "Crie uma questão sobre limites laterais envolvendo um ponto de descontinuidade.",
+        "Crie uma questão desafiadora sobre limites envolvendo a regra de L'Hôpital.",
+        "Crie uma questão conceitual sobre limites infinitos e suas propriedades.",
+        "Crie uma questão prática sobre limites envolvendo funções trigonométricas."
+    ],
+    derivadas: [
+        "Crie uma questão simples sobre derivadas de polinômios.",
+        "Crie uma questão prática sobre derivadas envolvendo funções trigonométricas.",
+        "Crie uma questão desafiadora sobre derivadas envolvendo a regra do produto e do quociente.",
+        "Crie uma questão conceitual sobre a derivada como taxa de variação instantânea.",
+        "Crie uma questão sobre derivadas envolvendo a regra da cadeia em funções compostas."
+    ],
+    integrais: [
+        "Crie uma questão simples sobre integrais definidas envolvendo polinômios.",
+        "Crie uma questão prática sobre integrais indefinidas de funções trigonométricas.",
+        "Crie uma questão desafiadora sobre integrais envolvendo substituição trigonométrica.",
+        "Crie uma questão conceitual sobre o Teorema Fundamental do Cálculo.",
+        "Crie uma questão sobre integrais que exija o uso de integração por partes."
+    ]
+};
 
-// Endpoint para gerar questões de limites
-app.post('/api/gerar-limite', async (req, res) => {
+// Função para gerar questão ou resolução
+async function generateFromAPI(prompt) {
     try {
-        // Seleciona um prompt aleatório da lista de limites
-        const prompt = promptsLimites[Math.floor(Math.random() * promptsLimites.length)];
-
-        // Faz a chamada para a API da OpenAI
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "Você é um assistente especializado em cálculo." },
-                { role: "user", content: prompt }
-            ],
-            max_tokens: 500,
-            temperature: 0.7,
-        }, {
-            headers: {
-                Authorization: `Bearer ${OPENAI_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-        });
-
-        // Armazena a última questão gerada para limites
-        ultimaQuestaoLimite = response.data.choices[0].message.content.trim();
-
-        // Retorna a questão gerada
-        res.json({ resultado: ultimaQuestaoLimite });
-    } catch (error) {
-        console.error('Erro ao gerar questão de limite:', error.message || error);
-        res.status(500).json({ error: 'Erro ao gerar questão de limite.' });
-    }
-});
-
-// Endpoint para gerar resolução com base na última questão de limites
-app.post('/api/gerar-resolucao-limite', async (req, res) => {
-    try {
-        // Verifica se há uma questão gerada anteriormente
-        if (!ultimaQuestaoLimite) {
-            return res.status(400).json({ error: 'Nenhuma questão foi gerada ainda para limites.' });
-        }
-
-        // Cria o prompt para a resolução com base na última questão gerada
-        const prompt = `
-            Resolva a seguinte questão de cálculo 1 sobre limites:
-            ${ultimaQuestaoLimite}
-            Explique cada passo detalhadamente e formate as expressões matemáticas com delimitadores LaTeX.
-        `;
-
-        // Faz a chamada para a API da OpenAI
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: "gpt-3.5-turbo",
             messages: [
@@ -111,55 +91,48 @@ app.post('/api/gerar-resolucao-limite', async (req, res) => {
             },
         });
 
-        // Extrai e retorna a resolução gerada
-        const resolucao = response.data.choices[0].message.content.trim();
+        return response.data.choices[0].message.content.trim();
+    } catch (error) {
+        console.error('Erro ao comunicar com a API OpenAI:', error.message || error);
+        throw new Error('Erro ao gerar conteúdo.');
+    }
+}
+
+// Endpoints para limites
+app.post('/api/gerar-limite', async (req, res) => {
+    try {
+        const prompt = prompts.limites[Math.floor(Math.random() * prompts.limites.length)];
+        ultimaQuestaoLimite = await generateFromAPI(prompt);
+        res.json({ resultado: ultimaQuestaoLimite });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao gerar questão de limite.' });
+    }
+});
+
+app.post('/api/gerar-resolucao-limite', async (req, res) => {
+    try {
+        if (!ultimaQuestaoLimite) {
+            return res.status(400).json({ error: 'Nenhuma questão foi gerada ainda para limites.' });
+        }
+
+        const prompt = `Resolva a seguinte questão de cálculo 1 sobre limites: ${ultimaQuestaoLimite}`;
+        const resolucao = await generateFromAPI(prompt);
         res.json({ resolucao });
     } catch (error) {
-        console.error('Erro ao gerar resolução de limite:', error.message || error);
         res.status(500).json({ error: 'Erro ao gerar resolução de limite.' });
     }
 });
 
-
 // Endpoints para derivadas
-const promptsDerivadas = [
-    "Crie uma questão simples sobre derivadas de polinômios.",
-    "Crie uma questão prática sobre derivadas envolvendo funções trigonométricas.",
-    "Crie uma questão desafiadora sobre derivadas envolvendo a regra do produto e do quociente.",
-    "Crie uma questão conceitual sobre a derivada como taxa de variação instantânea.",
-    "Crie uma questão sobre derivadas envolvendo a regra da cadeia em funções compostas."
-];
-
-let ultimaQuestaoDerivada = ''; // Variável para armazenar a última questão gerada
-
 app.post('/api/gerar-derivada', async (req, res) => {
     try {
-        const prompt = promptsDerivadas[Math.floor(Math.random() * promptsDerivadas.length)];
-
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "Você é um assistente especializado em cálculo." },
-                { role: "user", content: prompt }
-            ],
-            max_tokens: 500,
-            temperature: 0.7,
-        }, {
-            headers: {
-                Authorization: `Bearer ${OPENAI_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-        });
-
-        // Salvar a questão gerada na variável global
-        ultimaQuestaoDerivada = response.data.choices[0].message.content.trim();
+        const prompt = prompts.derivadas[Math.floor(Math.random() * prompts.derivadas.length)];
+        ultimaQuestaoDerivada = await generateFromAPI(prompt);
         res.json({ resultado: ultimaQuestaoDerivada });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Erro ao gerar questão de derivada.' });
     }
 });
-
 
 app.post('/api/gerar-resolucao-derivada', async (req, res) => {
     try {
@@ -167,118 +140,38 @@ app.post('/api/gerar-resolucao-derivada', async (req, res) => {
             return res.status(400).json({ error: 'Nenhuma questão foi gerada ainda para derivadas.' });
         }
 
-        const prompt = `
-            Resolva a seguinte questão de derivadas:
-            ${ultimaQuestaoDerivada}
-            Explique cada passo detalhadamente e formate as expressões matemáticas com delimitadores LaTeX.
-        `;
-
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "Você é um assistente especializado em cálculo." },
-                { role: "user", content: prompt }
-            ],
-            max_tokens: 1000,
-            temperature: 0.7,
-        }, {
-            headers: {
-                Authorization: `Bearer ${OPENAI_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-        });
-
-        const resolucao = response.data.choices[0].message.content.trim();
-        res.json({ resultado: resolucao });
+        const prompt = `Resolva a seguinte questão de derivadas: ${ultimaQuestaoDerivada}`;
+        const resolucao = await generateFromAPI(prompt);
+        res.json({ resolucao });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Erro ao gerar resolução de derivada.' });
     }
 });
 
-// Lista de prompts para integrais
-const promptsIntegrais = [
-    "Crie uma questão simples sobre integrais definidas envolvendo polinômios.",
-    "Crie uma questão prática sobre integrais indefinidas de funções trigonométricas.",
-    "Crie uma questão desafiadora sobre integrais envolvendo substituição trigonométrica.",
-    "Crie uma questão conceitual sobre o Teorema Fundamental do Cálculo.",
-    "Crie uma questão sobre integrais que exija o uso de integração por partes."
-];
-
-// Variável global para armazenar a última questão gerada
-let ultimaQuestaoIntegral = "";
-
-// Endpoint para gerar questão de integral
+// Endpoints para integrais
 app.post('/api/gerar-integral', async (req, res) => {
     try {
-        // Seleciona um prompt aleatório
-        const prompt = promptsIntegrais[Math.floor(Math.random() * promptsIntegrais.length)];
-
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "Você é um assistente especializado em cálculo." },
-                { role: "user", content: prompt }
-            ],
-            max_tokens: 500,
-            temperature: 0.7,
-        }, {
-            headers: {
-                Authorization: `Bearer ${OPENAI_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-        });
-
-        // Armazena a última questão gerada
-        ultimaQuestaoIntegral = response.data.choices[0].message.content.trim();
-
-        // Retorna a questão gerada
+        const prompt = prompts.integrais[Math.floor(Math.random() * prompts.integrais.length)];
+        ultimaQuestaoIntegral = await generateFromAPI(prompt);
         res.json({ resultado: ultimaQuestaoIntegral });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Erro ao gerar questão de integral.' });
     }
 });
 
-// Endpoint para gerar resolução de integral
 app.post('/api/gerar-resolucao-integral', async (req, res) => {
     try {
-        // Verifica se há uma questão armazenada
         if (!ultimaQuestaoIntegral) {
             return res.status(400).json({ error: 'Nenhuma questão foi gerada ainda para integrais.' });
         }
 
-        // Prompt para resolver a questão armazenada
-        const prompt = `
-            Resolva a seguinte questão de cálculo 1 sobre integrais:
-            ${ultimaQuestaoIntegral}
-            Explique cada passo detalhadamente e formate as expressões matemáticas com delimitadores LaTeX.
-        `;
-
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "Você é um assistente especializado em cálculo." },
-                { role: "user", content: prompt }
-            ],
-            max_tokens: 1000,
-            temperature: 0.7,
-        }, {
-            headers: {
-                Authorization: `Bearer ${OPENAI_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-        });
-
-        // Retorna a resolução gerada
-        const resolucao = response.data.choices[0].message.content.trim();
+        const prompt = `Resolva a seguinte questão de cálculo 1 sobre integrais: ${ultimaQuestaoIntegral}`;
+        const resolucao = await generateFromAPI(prompt);
         res.json({ resolucao });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Erro ao gerar resolução de integral.' });
     }
 });
-
 
 // Página de erro 404
 app.use((req, res) => res.status(404).sendFile(path.join(__dirname, 'public', '404.html')));

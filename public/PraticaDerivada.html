@@ -61,45 +61,42 @@
     </footer>
 
     <script>
-        let lastGeneratedQuestion = ''; // Armazena a última questão gerada
+        // Evento para gerar a questão de derivadas
+document.getElementById('generate-question').addEventListener('click', function (event) {
+    event.preventDefault();
 
-        // Evento para gerar a questão
-        document.getElementById('generate-question').addEventListener('click', function (event) {
-            event.preventDefault();
+    // Enviar requisição para gerar a questão de derivadas
+    fetch('/api/gerar-derivada', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Erro ao comunicar com o servidor.');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const questionElement = document.getElementById('generated-question');
+            questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
 
-            // Solicitar a questão
-            fetch('/api/gerar-derivada', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao comunicar com o servidor.');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    const questionElement = document.getElementById('generated-question');
-                    questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
-                    lastGeneratedQuestion = data.resultado || ''; // Armazena a questão gerada
-
-                    // Reprocessar símbolos matemáticos com MathJax
-                    if (window.MathJax) {
-                        MathJax.typesetPromise().catch((err) =>
-                            console.error('Erro ao renderizar MathJax:', err)
-                        );
-                    }
-                })
-                .catch((error) => {
-                    console.error('Erro ao gerar questão:', error);
-                    alert('Erro ao gerar questão. Tente novamente!');
-                });
+            // Reprocessar símbolos matemáticos com MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise().catch((err) =>
+                    console.error('Erro ao renderizar MathJax:', err)
+                );
+            }
+        })
+        .catch((error) => {
+            console.error('Erro ao gerar questão:', error);
+            alert('Erro ao gerar questão. Tente novamente!');
         });
+});
 
-        // Evento para gerar a resolução
-        document.getElementById('generate-resolution').addEventListener('click', function (event) {
+// Evento para gerar a resolução de derivadas
+document.getElementById('generate-resolution').addEventListener('click', function (event) {
     event.preventDefault();
 
     // Chamar o backend para gerar a resolução
@@ -118,7 +115,7 @@
         .then((data) => {
             const resolutionElement = document.getElementById('generated-resolution');
             resolutionElement.innerHTML = data.resolucao || 'Nenhuma resolução encontrada.';
-            
+
             // Reprocessar símbolos matemáticos com MathJax
             if (window.MathJax) {
                 MathJax.typesetPromise().catch((err) =>
@@ -131,7 +128,6 @@
             alert('Erro ao gerar resolução. Tente novamente!');
         });
 });
-
 
     </script>
 </body>
