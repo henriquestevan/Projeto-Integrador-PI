@@ -1,4 +1,4 @@
-/* Reset e configurações gerais */
+/* Reset e Configurações Gerais */
 * {
     margin: 0;
     padding: 0;
@@ -6,60 +6,717 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
-    color: #000;
-    line-height: 1.6;
-    margin: 0;
+    color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Cabeçalho */
-header {
-    width: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
+/* Navbar e Menu Hamburguer */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #2E3B55; /* Azul escuro discreto */
+    padding: 10px 20px;
+    position: relative;
 }
 
-nav ul {
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+}
+
+.nav-list {
     list-style: none;
     display: flex;
     gap: 20px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-list li a:hover {
+    color: #FFD700; /* Amarelo suave */
+}
+
+/* Menu Hamburguer em Dispositivos Móveis */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        background-color: #2E3B55; /* Fundo do menu no mesmo tom da navbar */
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-list li {
+        padding: 10px 0;
+    }
+}
+
+/* Banner Principal */
+.banner {
+    background-color: #2E3B55; /* Azul escuro discreto */
+    width: 100%;
+    padding: 60px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.banner h1 {
+    font-size: 48px;
+    font-weight: bold;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Estilo Principal */
+main {
+    width: 100%;
+}
+
+/* Seção Introdutória */
+.intro-section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #e6e9ef; /* Fundo neutro */
+    color: #333;
+    animation: slideUp 1s ease-in-out;
+}
+
+.intro-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.intro-section p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Estilo das Seções */
+.content-box {
+    text-align: center;
+    padding: 40px 20px;
+    color: #000000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    min-height: 30vh;
+    animation: fadeIn 1.5s ease-in-out;
+    background-color: #6C757D; /* Cinza suave */
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.content-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.content-box h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.content-box p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+/* Botão das Seções */
+.action-button {
+    background-color: #004C99; /* Azul padrão */
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.action-button:hover {
+    background-color: #003366;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Botão de Retorno */
+.return-button {
+    background-color: #FFD700; /* Amarelo destaque */
+    color: #2E3B55;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px auto;
+    display: block;
+    width: fit-content;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #FFC107;
+    color: #000;
+}
+
+/* Botões de Alternância */
+.content-switch {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.switch-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #2E3B55;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.switch-button.active {
+    background-color: #FFD700;
+    color: #2E3B55;
+}
+
+.switch-button:hover {
+    background-color: #003366;
+}
+
+/* Conteúdo Teoria e Prática */
+.content {
+    display: none;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.content.hidden {
+    display: none;
+}
+
+.content:not(.hidden) {
+    display: block;
+}
+/* Reset e Configurações Gerais */
+.page-theory * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page-theory body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar e Menu Hamburguer */
+.page-theory .navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #2E3B55; /* Azul escuro discreto */
+    padding: 10px 20px;
+    position: relative;
+}
+
+.page-theory .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.page-theory .bar {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+}
+
+.page-theory .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.page-theory .nav-list li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.page-theory .nav-list li a:hover {
+    color: #FFD700; /* Amarelo suave */
+}
+
+/* Menu Hamburguer em Dispositivos Móveis */
+@media screen and (max-width: 768px) {
+    .page-theory .menu-toggle {
+        display: flex;
+    }
+
+    .page-theory .nav-list {
+        display: none;
+        flex-direction: column;
+        background-color: #2E3B55; /* Fundo do menu no mesmo tom da navbar */
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .page-theory .nav-list.active {
+        display: flex;
+    }
+
+    .page-theory .nav-list li {
+        padding: 10px 0;
+    }
+}
+
+/* Barra Lateral para os Tópicos */
+.page-theory .sidebar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 250px;
+    background-color: #2E3B55;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.page-theory .sidebar ul {
+    list-style: none;
     padding: 0;
 }
 
-nav ul li a {
+.page-theory .sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.page-theory .sidebar ul li a {
+    color: white;
+    font-size: 18px;
     text-decoration: none;
-    color: #000;
-    font-weight: 500;
-    padding: 5px 10px;
+    transition: color 0.3s ease;
 }
 
-nav ul li a.active {
-    text-decoration: underline;
-    color: #4CAF50;
+.page-theory .sidebar ul li a:hover {
+    color: #FFD700;
 }
 
-/* Layout principal */
-main {
-    padding-top: 100px;
+/* Conteúdo da Página Teórica */
+.page-theory main {
+    margin-left: 260px; /* Espaço para a barra lateral */
+    padding: 20px;
+    z-index: 1;
+}
+
+/* Estilo dos Botões de Tópicos */
+.page-theory .topic-btn {
+    display: inline-block;
+    background-color: #2E3B55;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.page-theory .topic-btn:hover {
+    background-color: #FFD700;
+}
+
+/* Seções dos tópicos */
+.page-theory .content div {
+    margin-bottom: 40px;
+    z-index: 2;
+}
+
+.page-theory .content div h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.page-theory .content div p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Estilos de Responsividade para dispositivos menores */
+@media screen and (max-width: 768px) {
+    .page-theory .sidebar {
+        position: static;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .page-theory .sidebar ul {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .page-theory .sidebar ul li {
+        margin-bottom: 10px;
+    }
+
+    .page-theory main {
+        margin-left: 0;
+    }
+    /* Ajustar largura do conteúdo para a área lateral */
+    .page-theory .content {
+    margin-left: 270px; /* Espaço para a barra lateral */
+    padding: 20px;
+    max-width: calc(100% - 270px); /* Limitar a largura ao tamanho da tela menos a barra lateral */
+    overflow-y: auto; /* Permite o scroll vertical dentro da área de conteúdo */
+    height: 100vh; /* A altura é 100% da altura da tela */
+    background-color: #f4f4f4; /* Cor de fundo, caso necessário */
+}
+
+/* Barra lateral */
+    .page-theory .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #2E3B55;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    border-right: 2px solid #333; /* Borda para separar a barra lateral */
+}
+
+/* Conteúdo dos Tópicos */
+.page-theory .content h3 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.page-theory .content p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+}
+/* Estilos aplicados apenas às páginas práticas */
+body.page-practice {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: #f4f6f8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Banner */
+.banner-practice {
+    background-color: #1a2940;
+    color: white;
     text-align: center;
-    padding: 20px;
+    padding: 30px 0;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.section {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 40px auto;
-    padding: 20px;
+.banner-practice h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Botão Parte Teórica */
+.content-switch {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.switch-button {
+    background-color: #ffcc00;
+    color: #1a2940;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.switch-button:hover {
+    background-color: #e6b800;
+}
+
+/* Área principal */
+main.page-practice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.intro-section-practice {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.intro-section-practice h2 {
+    font-size: 1.8rem;
+    color: #1a2940;
+    margin-bottom: 20px;
+}
+
+.intro-section-practice p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Botão para gerar questões */
+button#generate-question {
+    background-color: #ffcc00;
+    color: #1a2940;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+button#generate-question:hover {
+    background-color: #e6b800;
+}
+
+/* Seções de Questão e Resolução */
+#question-section, #api-response-section {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
     text-align: left;
 }
+
+#question-section h3, #api-response-section h3 {
+    font-size: 1.2rem;
+    color: #1a2940;
+    margin-bottom: 10px;
+}
+
+#question-section p, #api-response-section p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Rodapé */
+footer.page-practice {
+    background-color: #1a2940;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer.page-practice p {
+    margin: 0;
+}
+/* Seções de conteúdo (Questões e Resolução) */
+.content-section {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    box-sizing: border-box;
+    text-align: left;
+}
+/* Estilo compartilhado para as caixas */
+.content-box {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Botões de ação */
+.action-button {
+    background-color: #ffcc00; /* Amarelo padrão */
+    color: #1a2940; /* Azul escuro */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto 20px auto; /* Centralizar e adicionar espaço abaixo */
+}
+
+.action-button:hover {
+    background-color: #e6b800; /* Amarelo mais escuro ao passar o mouse */
+}
+
+/* Texto dentro das seções */
+#resolution-section h3,
+#question-section h3 {
+    font-size: 1.2rem;
+    color: #1a2940;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#resolution-section p,
+#question-section p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+}
+/* Estilos específicos para as caixas da página principal */
+.page-main-content-box {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f4f6f8; /* Cor de fundo mais clara */
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    box-sizing: border-box;
+    text-align: center;
+    min-height: 150px; /* Define altura mínima */
+}
+
+.back-button {
+    position: fixed; /* Fixa no canto da tela */
+    top: 2px; /* Margem superior */
+    left: 20px; /* Margem esquerda */
+    padding: 10px 20px; /* Espaçamento interno */
+    background-color: #ffcc00; /* Cor verde */
+    color: #1a2940; /* Cor do texto */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Borda arredondada */
+    font-size: 16px; /* Tamanho do texto */
+    cursor: pointer; /* Mostra o ponteiro ao passar o mouse */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+  }
+  
+  .back-button:hover {
+    background-color: #e6b800; /* Cor ao passar o mouse */
+  }
+

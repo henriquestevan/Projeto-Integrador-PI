@@ -4,21 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculus Made Easy</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
+        <nav class="navbar">
+            <ul class="nav-list" id="nav-list">
                 <li><a href="/limite">Limites</a></li>
                 <li><a href="/derivada">Derivadas</a></li>
                 <li><a href="/integral">Integrais</a></li>
+                
             </ul>
         </nav>
+        <div class="banner">
+            <h1>CalculusMadeEasy</h1>
+        </div>
     </header>
+
     <main>
-        <h1>Bem-vindo ao Calculus Made Easy</h1>
-        <p>Escolha um dos tópicos acima para começar!</p>
+        <section class="intro-section">
+            <h2>Bem-vindo</h2>
+            <p>Explore conceitos fundamentais como Limites, Derivadas e Integrais com exemplos práticos e explicações detalhadas.</p>
+        </section>
+
+        <section class="content-box">
+            <h2>Limites</h2>
+            <p>Descubra como os limites ajudam a compreender o comportamento das funções e a base do cálculo diferencial.</p>
+            <a href="/limite" class="action-button">Explorar Limites</a>
+        </section>
+
+        <section class="content-box">
+            <h2>Derivadas</h2>
+            <p>Entenda como as derivadas medem a taxa de variação e como aplicá-las para resolver problemas do mundo real.</p>
+            <a href="/derivada" class="action-button">Explorar Derivadas</a>
+        </section>
+
+        <section class="content-box">
+            <h2>Integrais</h2>
+            <p>Aprenda a calcular áreas e volumes com integrais e descubra sua importância em diversas aplicações.</p>
+            <a href="/integral" class="action-button">Explorar Integrais</a>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

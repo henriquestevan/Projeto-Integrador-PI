@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte Prática - Limites</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="script.js"></script>
+</head>
+<body class="page-practice">
+    <header>
+        <nav class="navbar">
+            
+            <ul class="nav-list" id="nav-list">
+                <li><a href="/PraticaLimite" class="active">Limites</a></li>
+                <li><a href="/PraticaDerivada">Derivadas</a></li>
+                <li><a href="/PraticaIntegral">Integrais</a></li>
+               
+            </ul>
+        </nav>
+        <button class="back-button" onclick="goToHome()">Página Inicial</button>
+    </header>
+
+    <main>
+        <section class="banner">
+            <h1>Prática de Limites</h1>
+        </section>
+
+        <section class="content-switch">
+            <a href="/TeoriaLimites.html" id="teoria-btn" class="switch-button">Parte Teórica</a>
+        </section>
+
+        <section class="intro-section">
+            <h2>Questões de Limite</h2>
+            <p>A API irá gerar uma questão aleatória de limite para você.</p>
+
+            <button id="generate-question">Gerar Questão de Limite</button>
+
+        <section id="question-section" class="content-section">
+                <h3>Questão Gerada:</h3>
+                <div class="content-box">
+                    <p id="generated-question">Aqui aparecerá a questão gerada.</p>
+                </div>
+         </section>
+            
+         <section id="resolution-section" class="content-section">
+                <button id="generate-resolution" class="action-button">Gerar Resolução</button>
+                <h3>Resolução Gerada:</h3>
+                <div class="content-box">
+                    <p id="generated-resolution">Aqui aparecerá a resolução gerada.</p>
+                </div>
+        </section>
+            
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+
+        document.getElementById('generate-question').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // Enviar requisição para gerar a questão de limite
+            fetch('/api/gerar-limite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao comunicar com o servidor.');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    const questionElement = document.getElementById('generated-question');
+                    questionElement.innerHTML = data.resultado || 'Nenhuma questão encontrada.';
+                    ultimaQuestaoLimite = data.resultado; // Armazenar a última questão gerada
+
+                    // Reprocessar símbolos matemáticos com MathJax
+                    if (window.MathJax) {
+                        MathJax.typesetPromise().catch((err) =>
+                            console.error('Erro ao renderizar MathJax:', err)
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error('Erro ao gerar questão:', error);
+                    alert('Erro ao gerar questão. Tente novamente!');
+                });
+        });
+
+        document.getElementById('generate-resolution').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (!ultimaQuestaoLimite) {
+                alert('Por favor, gere uma questão primeiro!');
+                return;
+            }
+
+            // Enviar requisição para gerar a resolução da questão de limite
+            fetch('/api/gerar-resolucao-limite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ question: ultimaQuestaoLimite })
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao comunicar com o servidor.');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    const resolutionElement = document.getElementById('generated-resolution');
+                    resolutionElement.innerHTML = data.resolucao || 'Nenhuma resolução encontrada.';
+
+                    // Reprocessar símbolos matemáticos com MathJax
+                    if (window.MathJax) {
+                        MathJax.typesetPromise().catch((err) =>
+                            console.error('Erro ao renderizar MathJax:', err)
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error('Erro ao gerar resolução:', error);
+                    alert('Erro ao gerar resolução. Tente novamente!');
+                });
+        });
+    </script>
+</body>
+</html>

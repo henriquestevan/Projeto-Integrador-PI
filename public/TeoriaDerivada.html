@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte Teórica - Derivadas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="script.js"></script>
+</head>
+<body class="page-theory">
+    <header>
+        <nav class="navbar">
+            
+            <ul class="nav-list" id="nav-list">
+                <li><a href="/limite">Limites</a></li>
+                <li><a href="/derivada" class="active">Derivadas</a></li>
+                <li><a href="/integral">Integrais</a></li>
+               
+            </ul>
+        </nav>
+        <button class="back-button" onclick="goToHome()">Página Inicial</button>
+    </header>
+
+    <main>
+        <section class="banner">
+            <h1>Parte Teórica - Derivadas</h1>
+        </section>
+
+        <!-- Botões de Tópicos (Lateral) -->
+        <section class="sidebar">
+            <ul>
+                <li><a href="#definicao" class="topic-btn">Definição de Derivada</a></li>
+                <li><a href="#regras" class="topic-btn">Regras de Derivação</a></li>
+                <li><a href="#teorema" class="topic-btn">Teorema Fundamental da Derivada</a></li>
+                <li><a href="#aplicacoes" class="topic-btn">Aplicações das Derivadas</a></li>
+            </ul>
+        </section>
+
+        <!-- Conteúdo -->
+        <section class="content">
+            <div id="definicao">
+                <h3>Definição de Derivada</h3>
+                <p>A derivada de uma função descreve a taxa de variação dessa função à medida que a variável independente muda. Em termos simples, ela nos informa como a função responde a pequenas alterações no valor de sua variável independente. Pode ser interpretada como a inclinação da reta tangente à curva da função em um ponto específico.</p>
+                <p>Matematicamente, a derivada de uma função \( f(x) \) em um ponto \( x = a \) é definida como o limite da taxa de variação média da função, à medida que a variação da variável independente se aproxima de zero. A fórmula para a derivada de uma função em um ponto \( x = a \) é dada por:</p>
+                <p><strong>\( \frac{d}{dx} f(x) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} \)</strong></p>
+                <p>Isso significa que a derivada nos dá a taxa de variação instantânea da função no ponto \( x = a \), ou seja, como a função muda à medida que a variável independente se altera infinitesimalmente. Se a função descreve a posição de um objeto no tempo, a derivada nos dá a velocidade desse objeto. Se a função descreve o valor de uma empresa ao longo do tempo, a derivada nos dá a taxa de crescimento ou declínio dessa empresa a cada instante.</p>
+                <p>A derivada é uma ferramenta central no cálculo e tem uma ampla gama de aplicações, tanto na matemática pura quanto em outras disciplinas como física, economia, biologia, e engenharia. Por exemplo, no estudo de movimento, a derivada da função posição de uma partícula nos dá a sua velocidade no instante específico. Ela também é utilizada na modelagem de crescimento populacional, otimização de processos, e análise de tendências em mercados financeiros.</p>
+                <p>Além disso, a derivada é fundamental para entender a noção de continuidade de funções. Se a derivada de uma função existe em um ponto, isso significa que a função é contínua nesse ponto e não há "saltos" ou descontinuidade no comportamento da função naquele ponto.</p>
+            </div>
+            
+
+            <div id="regras">
+                <h3>Regras de Derivação</h3>
+                <p>Existem várias regras que facilitam o cálculo das derivadas de funções. Estas regras são essenciais para lidar com funções mais complexas e permitir o cálculo rápido de derivadas. As principais regras de derivação incluem a regra da soma, a regra do produto, a regra do quociente e a regra da cadeia. Vamos ver como cada uma delas funciona, com exemplos práticos:</p>
+            
+                <h4>1. Regra da Soma</h4>
+                <p>A regra da soma estabelece que a derivada de uma soma de duas funções é a soma das derivadas dessas funções. Em termos matemáticos, se temos duas funções \( f(x) \) e \( g(x) \), então:</p>
+                <p><strong>\( \frac{d}{dx} [f(x) + g(x)] = f'(x) + g'(x) \)</strong></p>
+                <p><strong>Exemplo:</strong> Seja \( f(x) = x^2 \) e \( g(x) = 3x \). A derivada de \( f(x) + g(x) \) é dada por:</p>
+                <p><strong>\( \frac{d}{dx} [x^2 + 3x] = 2x + 3 \)</strong></p>
+            
+                <h4>2. Regra do Produto</h4>
+                <p>A regra do produto é usada quando temos o produto de duas funções. A derivada do produto de \( f(x) \) e \( g(x) \) é dada por:</p>
+                <p><strong>\( \frac{d}{dx} [f(x) \cdot g(x)] = f'(x) \cdot g(x) + f(x) \cdot g'(x) \)</strong></p>
+                <p><strong>Exemplo:</strong> Se \( f(x) = x^2 \) e \( g(x) = \sin(x) \), a derivada de \( f(x) \cdot g(x) \) será:</p>
+                <p><strong>\( \frac{d}{dx} [x^2 \cdot \sin(x)] = 2x \cdot \sin(x) + x^2 \cdot \cos(x) \)</strong></p>
+            
+                <h4>3. Regra do Quociente</h4>
+                <p>A regra do quociente é usada para calcular a derivada de um quociente entre duas funções. Se temos \( f(x) \) e \( g(x) \), então a derivada de \( \frac{f(x)}{g(x)} \) é dada por:</p>
+                <p><strong>\( \frac{d}{dx} \left[ \frac{f(x)}{g(x)} \right] = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{[g(x)]^2} \)</strong></p>
+                <p><strong>Exemplo:</strong> Se \( f(x) = x^2 \) e \( g(x) = x + 1 \), a derivada de \( \frac{f(x)}{g(x)} \) será:</p>
+                <p><strong>\( \frac{d}{dx} \left[ \frac{x^2}{x+1} \right] = \frac{2x(x+1) - x^2}{(x+1)^2} \)</strong></p>
+                <p>Após simplificação, temos:</p>
+                <p><strong>\( \frac{d}{dx} \left[ \frac{x^2}{x+1} \right] = \frac{x^2 + 2x}{(x+1)^2} \)</strong></p>
+            
+                <h4>4. Regra da Cadeia</h4>
+                <p>A regra da cadeia é utilizada quando temos a composição de duas funções. Se uma função \( f(x) \) está dentro de outra função \( g(x) \), então a derivada da composição \( f(g(x)) \) é dada por:</p>
+                <p><strong>\( \frac{d}{dx} [f(g(x))] = f'(g(x)) \cdot g'(x) \)</strong></p>
+                <p><strong>Exemplo:</strong> Se \( f(x) = \sin(x) \) e \( g(x) = x^2 \), a derivada de \( f(g(x)) = \sin(x^2) \) é dada por:</p>
+                <p><strong>\( \frac{d}{dx} [\sin(x^2)] = \cos(x^2) \cdot 2x \)</strong></p>
+                <p>A regra da cadeia permite calcular rapidamente derivadas de funções compostas como essa, em que temos uma função dentro de outra.</p>
+            </div>
+            
+
+            <div id="teorema">
+                <h3>Teorema Fundamental da Derivada</h3>
+                <p>O Teorema Fundamental da Derivada estabelece a conexão entre as derivadas e as integrais, sendo um dos pilares do cálculo. Esse teorema é essencial para a compreensão de como as taxas de variação (derivadas) e as áreas sob as curvas (integrais) estão relacionadas. Ele é dividido em duas partes principais:</p>
+            
+                <h4>1. Primeira Parte do Teorema Fundamental do Cálculo</h4>
+                <p>A primeira parte do teorema afirma que, se uma função \( f(x) \) é contínua em um intervalo fechado \([a, b]\) e é derivável no intervalo aberto \((a, b)\), então a integral definida de \( f(x) \) de \( a \) até \( b \) pode ser calculada por uma primitiva de \( f(x) \). Ou seja, se existe uma função \( F(x) \) tal que:</p>
+                <p><span class="math-tex">\( F'(x) = f(x) \)</span>, então a integral de \( f(x) \) de \( a \) até \( b \) é dada por:</p>
+                <p><span class="math-tex">\( \int_a^b f(x) \, dx = F(b) - F(a) \)</span>.</p>
+                <p><strong>Exemplo:</strong> Seja \( f(x) = 2x \), e sua primitiva \( F(x) = x^2 \). A integral de \( 2x \) de 1 a 3 é:</p>
+                <p><span class="math-tex">\( \int_1^3 2x \, dx = [x^2]_1^3 = 3^2 - 1^2 = 9 - 1 = 8 \)</span>.</p>
+            
+                <h4>2. Segunda Parte do Teorema Fundamental do Cálculo</h4>
+                <p>A segunda parte do teorema afirma que se \( f(x) \) for contínua em um intervalo fechado \([a, b]\), então a função definida por uma integral definida de \( f(x) \) é derivável em todo o intervalo \((a, b)\), e a derivada dessa função é a própria função \( f(x) \). Ou seja, se definirmos uma função \( G(x) \) como:</p>
+                <p><span class="math-tex">\( G(x) = \int_a^x f(t) \, dt \)</span>, então a derivada de \( G(x) \) é:</p>
+                <p><span class="math-tex">\( G'(x) = f(x) \)</span>.</p>
+                <p><strong>Exemplo:</strong> Seja \( f(x) = \sin(x) \), e defina \( G(x) = \int_0^x \sin(t) \, dt \). A derivada de \( G(x) \) será:</p>
+                <p><span class="math-tex">\( G'(x) = \sin(x) \)</span>, que é exatamente a função original \( f(x) \).</p>
+            
+                <p>Esse teorema é fundamental porque ele mostra que as operações de diferenciação e integração são operações inversas. A diferenciação de uma integral nos dá a função original, e a integração de uma função nos dá a área sob a curva dessa função, dependendo dos limites de integração. A conexão entre derivadas e integrais é a base para muitos outros conceitos no cálculo e é amplamente utilizada em várias áreas da matemática e suas aplicações.</p>
+            
+                <p>Por exemplo, na física, o teorema é utilizado para calcular o deslocamento de uma partícula ao longo de um intervalo de tempo, dada a sua velocidade. Se a velocidade de uma partícula \( v(t) \) for uma função contínua do tempo, então o deslocamento \( s(t) \) pode ser encontrado integrando a velocidade ao longo do tempo. Esse conceito é diretamente aplicado em várias áreas como mecânica, termodinâmica, e até na economia e otimização de sistemas.</p>
+            </div>
+            
+
+            <div id="aplicacoes">
+                <h3>Aplicações dos Limites</h3>
+                <p>Os limites são um conceito fundamental no cálculo e têm inúmeras aplicações práticas em várias áreas da ciência e engenharia. Eles são usados para modelar comportamentos em que algo se aproxima de um valor específico, mas nunca o atinge diretamente, ou em situações que envolvem mudanças rápidas e infinitesimais. A seguir, exploraremos algumas das principais aplicações dos limites em diferentes contextos.</p>
+            
+                <h4>1. Cálculo de Derivadas</h4>
+                <p>As derivadas, que são uma das principais ferramentas do cálculo, são definidas em termos de limites. A derivada de uma função \( f(x) \) em um ponto \( x = a \) é o limite da taxa de variação de \( f(x) \) quando \( x \) se aproxima de \( a \). A fórmula da derivada é dada por:</p>
+                <p><span class="math-tex"> \(\lim_{{h \to 0}} \frac{f(a+h) - f(a)}{h}\)</span></p>
+                <p>Esse conceito é essencial para a análise de como as funções se comportam em pontos específicos, como no cálculo da velocidade instantânea de um objeto em movimento, onde a função descreve a posição do objeto ao longo do tempo.</p>
+            
+                <h4>2. Cálculo de Áreas e Volumes</h4>
+                <p>Os limites também desempenham um papel importante no cálculo de áreas e volumes, especialmente quando essas grandezas são descritas por funções contínuas. A integral definida, que é usada para calcular a área sob uma curva, é definida como um limite de somas de Riemann. A integral de uma função \( f(x) \) de \( a \) até \( b \) é dada por:</p>
+                <p><span class="math-tex"> \(\int_a^b f(x) \, dx = \lim_{{\Delta x \to 0}} \sum_{i=1}^n f(x_i) \Delta x \)</span></p>
+                <p>Essa soma de Riemann representa a área sob a curva de \( f(x) \) entre os pontos \( a \) e \( b \) quando o número de divisões do intervalo \([a, b]\) vai para infinito. Esse conceito é fundamental para o cálculo de áreas e volumes em geometria e física.</p>
+            
+                <h4>3. Descontinuidade e Assíntotas</h4>
+                <p>Limites também são usados para estudar o comportamento das funções em pontos de descontinuidade e para entender assíntotas. Quando uma função não é definida em um ponto, mas tem um limite nesse ponto, podemos usar o limite para determinar o comportamento da função nas proximidades desse ponto. Por exemplo, o limite de uma função quando \( x \) se aproxima de um ponto de descontinuidade pode revelar a presença de uma assíntota vertical ou horizontal.</p>
+                <p>Um exemplo clássico é o limite da função \( f(x) = \frac{1}{x} \) quando \( x \) se aproxima de 0. A função tem um comportamento assintótico, onde o valor da função cresce indefinidamente à medida que \( x \) se aproxima de 0:</p>
+                <p><span class="math-tex"> \(\lim_{{x \to 0}} \frac{1}{x} = \infty\) </span></p>
+                <p>Isso indica que a função tem uma assíntota vertical em \( x = 0 \), e seu valor tende para infinito à medida que \( x \) se aproxima desse ponto.</p>
+            
+                <h4>4. Fenômenos de Crescimento e Decaimento</h4>
+                <p>Limites também são utilizados para modelar fenômenos que envolvem crescimento e decaimento, como no estudo de populações, reações químicas, e processos de difusão. O comportamento de uma função de crescimento pode ser analisado utilizando limites, especialmente em casos de crescimento exponencial ou logístico, onde a taxa de crescimento depende de uma quantidade que muda ao longo do tempo.</p>
+                <p>Um exemplo clássico de uso de limites no crescimento populacional é o modelo exponencial de crescimento populacional, onde a taxa de crescimento é proporcional à população atual. O comportamento da população \( P(t) \) ao longo do tempo pode ser descrito pela função:</p>
+                <p><span class="math-tex">\( P(t) = P_0 e^{rt} \)</span></p>
+                <p>onde \( P_0 \) é a população inicial, \( r \) é a taxa de crescimento, e \( t \) é o tempo. O limite dessa função à medida que \( t \to \infty \) pode ser usado para entender como a população se comporta a longo prazo.</p>
+            
+                <h4>5. Aplicações em Física e Engenharia</h4>
+                <p>Na física e na engenharia, limites são usados para modelar fenômenos que envolvem movimento, força e energia. Por exemplo, o cálculo da velocidade instantânea de um objeto em movimento é feito utilizando derivadas, que, por sua vez, são definidas em termos de limites. A Lei de Newton para o movimento de partículas pode ser modelada por uma função, e a derivada dessa função nos dá a velocidade instantânea da partícula.</p>
+                <p>Outro exemplo é o uso de limites no estudo do fluxo de fluídos, onde é importante analisar a taxa de variação da quantidade de fluído que passa por uma área de seção transversal em um dado intervalo de tempo. Esse tipo de problema é comum em sistemas de dinâmica de fluidos, como em engenharia e meteorologia.</p>
+            
+                <p>Portanto, os limites são uma ferramenta indispensável para modelar e resolver problemas que envolvem taxas de variação, crescimento, e mudanças infinitesimais em diversas disciplinas científicas e tecnológicas.</p>
+            </div>
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalculusMadeEasy. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const topicLinks = document.querySelectorAll('.topic-btn');
+            topicLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
