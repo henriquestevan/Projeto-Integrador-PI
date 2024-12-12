@@ -41,7 +41,8 @@ Execute o comando:
 
 **Colaboradores**  
 Líder: João Pedro Marques  
-Henrique Oliveira Estevan
+Henrique Oliveira Estevan  
+| [![Herique Estevan](https://avatars.githubusercontent.com/u/henriquestevan?v=4)](https://github.com/henriquestevan)
 
 
   
