@@ -13,8 +13,8 @@ Acesse o site(preview): https://projeto-integrador-pi.onrender.com/
 ![image](https://github.com/user-attachments/assets/b867b961-7422-4a3d-9be1-4db4d6d77d7c)
 
 👨‍💻**Tecnologias**
--HTML
--CSS
+-HTML  
+-CSS  
 -JavaScript
 -Git
 -API do ChatGPT
