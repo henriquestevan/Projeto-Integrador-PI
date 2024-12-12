@@ -21,21 +21,22 @@ O site possui integração com o ChatGPT para a criação de questões e de suas
 
 📝**Instalação**  
 ***Lembre-se de ter o Node.js instalado e atualizado para funcionar corretamente**  
-1.Clone este repositório:  
+**1.Clone este repositório:**  
 `https://github.com/henriquestevan/Projeto-Integrador-PI.git`  
-2.Instale as dependências:  
+**2.Instale as dependências:**  
   No terminal, execute o seguinte comando:  
   `npm install`  
-3.Configurar as variáveis:    
+**3.Configurar as variáveis:**  
   Crie um arquivo chamado .env no projeto    
   `(O Git não permite o compartilhamento da chave da API do ChatGPT, então estará apenas no relatório enviado ao professor)`  
-4.Iniciar o servidor  
+**4.Iniciar o servidor:**
   Execute o comando:  
-  node server.js
+  `node server.js`
   
   O servidor rodará em: http://localhost:3000
   
   No final, seu VsCode deve conter o seguinte:
+  
 ![image](https://github.com/user-attachments/assets/2b174f6c-85a1-4313-ab36-9372455efa7b)
 
 **Colaboradores**
