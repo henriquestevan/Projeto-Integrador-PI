@@ -1,10 +1,10 @@
 # Projeto-Integrador-PI
 **CalculusMadeEasy**
-Projeto Integrador da aula de PI- Desenvolvimento Web, do curso de Engenharia da Computação da PucCampinas.
-O Projeto tem como objetivo desenvolver um site que integre pelo menos uma das outras matérias do curso, nossa escolha foi criar um site para ajudar no estudo de Cálculo;
+Projeto Integrador da aula de PI- Desenvolvimento Web, do curso de Engenharia da Computação da PucCampinas.  
+O Projeto tem como objetivo desenvolver um site que integre pelo menos uma das outras matérias do curso, nossa escolha foi criar um site para ajudar no estudo de Cálculo;  
 O site possui integração com o ChatGPT para a criação de questões e de suas respectivas soluções.
-
-Acesse o site(preview): https://projeto-integrador-pi.onrender.com/
+  
+  Acesse o site(preview): https://projeto-integrador-pi.onrender.com/
 
 ![image](https://github.com/user-attachments/assets/1ad2c50b-3e5d-46f0-850d-7e5310e5c241)
 
