@@ -40,8 +40,8 @@ Execute o comando:
 ![image](https://github.com/user-attachments/assets/2b174f6c-85a1-4313-ab36-9372455efa7b)
 
 **Colaboradores**  
-Líder: João Pedro Marques  
-| [Henrique Estevan](https://github.com/henriquestevan)
+Líder: [João Pedro Miranda](https://github.com/joaopedromirandam) 
+[Henrique Estevan](https://github.com/henriquestevan)
 
 
   
